@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
 import { themes } from "../../data";
+import Column from "../Column/Column";
 
 function Main() {
   return (
@@ -7,52 +8,31 @@ function Main() {
       <div className="container">
         <div className="main__block">
           <div className="main__content">
-            <div className="main__column column">
-              <div className="column__title">
-                <p>Без статуса</p>
-              </div>
-              <div className="cards">
-                <Card theme={themes.orange} />
-                <Card theme={themes.green} />
-                <Card theme={themes.orange} />
-                <Card theme={themes.purple} />
-                <Card theme={themes.orange} />
-              </div>
-            </div>
-            <div className="main__column">
-              <div className="column__title">
-                <p>Нужно сделать</p>
-              </div>
-              <div className="cards">
-                <Card theme={themes.green} />
-              </div>
-            </div>
-            <div className="main__column">
-              <div className="column__title">
-                <p>В работе</p>
-              </div>
-              <div className="cards">
-                <Card theme={themes.green} />
-                <Card theme={themes.purple} />
-                <Card theme={themes.orange} />
-              </div>
-            </div>
-            <div className="main__column">
-              <div className="column__title">
-                <p>Тестирование</p>
-              </div>
-              <div className="cards">
-                <Card theme={themes.green} />
-              </div>
-            </div>
-            <div className="main__column">
-              <div className="column__title">
-                <p>Готово</p>
-              </div>
-              <div className="cards">
-                <Card theme={themes.green} />
-              </div>
-            </div>
+            <Column column={"column"} columnTitle={"Без статуса"}>
+              <Card theme={themes.orange} />
+              <Card theme={themes.green} />
+              <Card theme={themes.orange} />
+              <Card theme={themes.purple} />
+              <Card theme={themes.orange} />
+            </Column>
+
+            <Column column={""} columnTitle={"Нужно сделать"}>
+              <Card theme={themes.green} />
+            </Column>
+
+            <Column column={""} columnTitle={"В работе<"}>
+              <Card theme={themes.green} />
+              <Card theme={themes.purple} />
+              <Card theme={themes.orange} />
+            </Column>
+
+            <Column column={""} columnTitle={"Тестирование"}>
+              <Card theme={themes.green} />
+            </Column>
+
+            <Column column={""} columnTitle={"Готово"}>
+              <Card theme={themes.green} />
+            </Column>
           </div>
         </div>
       </div>
