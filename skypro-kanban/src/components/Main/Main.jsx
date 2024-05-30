@@ -1,5 +1,5 @@
-import Card from "./Card";
-import { themes } from "../data";
+import Card from "../Card/Card";
+import { themes } from "../../data";
 
 function Main() {
   return (

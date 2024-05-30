@@ -1,10 +1,10 @@
 // import { useState } from 'react'
 import "./App.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import PopBrowse from "./components/PopBrowse";
-import PopExit from "./components/PopExit";
-import PopNewCard from "./components/PopNewCard";
+import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
+import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
+import PopExit from "./components/popups/PopExit/PopExit";
+import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 
 function App() {
   // const [count, setCount] = useState(0)

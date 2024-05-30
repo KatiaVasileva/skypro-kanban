@@ -1,4 +1,4 @@
-import Calendar from "./Calender";
+import Calendar from "../../Calendar/Calender";
 
 function PopBrowse() {
   return (
@@ -54,7 +54,7 @@ function PopBrowse() {
 
               <Calendar />
             </div>
-            
+
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
