@@ -20,7 +20,7 @@ function Main() {
               <Card theme={themes.green} />
             </Column>
 
-            <Column column={""} columnTitle={"В работе<"}>
+            <Column column={""} columnTitle={"В работе"}>
               <Card theme={themes.green} />
               <Card theme={themes.purple} />
               <Card theme={themes.orange} />
