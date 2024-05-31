@@ -1,4 +1,6 @@
-function Calendar() {
+import PropTypes from "prop-types";
+
+function Calendar({ dateEnd, dateControl }) {
   return (
     <div className="pop-new-card__calendar calendar">
       <p className="calendar__ttl subttl">Даты</p>
@@ -82,12 +84,17 @@ function Calendar() {
         <input type="hidden" id="datepick_value" value="08.09.2023" />
         <div className="calendar__period">
           <p className="calendar__p date-end">
-            Срок исполнения: <span className="date-control">09.09.23</span>
+            {dateEnd} <span className="date-control">{dateControl}</span>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
+Calendar.propTypes = {
+  dateEnd: PropTypes.string.isRequired,
+  dateControl: PropTypes.any.isRequired,
+};
 
 export default Calendar;
