@@ -1,6 +1,7 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function Header() {
+function Header({onCardAdd}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleWindow = ()  => {
@@ -22,8 +23,9 @@ function Header() {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button className="header__btn-main-new _hover01" id="btnMainNew" onClick={onCardAdd}>
+            {/* <a href="#popNewCard">Создать новую задачу</a> */}
+              <a href="#">Создать новую задачу</a>
             </button>
             <a href="#user-set-target" className="header__user _hover02" onClick={toggleWindow}>
               Ivan Ivanov
@@ -49,6 +51,10 @@ function Header() {
       </div>
     </header>
   );
+}
+
+Header.propTypes = {
+  onCardAdd: PropTypes.func.isRequired
 }
 
 export default Header;

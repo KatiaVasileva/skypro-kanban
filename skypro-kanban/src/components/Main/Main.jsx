@@ -1,8 +1,9 @@
 // import Card from "../Card/Card";
-import { statusList, cardList } from "../../data";
+import { statusList } from "../../data";
 import Column from "../Column/Column";
+import PropTypes from "prop-types";
 
-function Main() {
+function Main({cards}) {
   return (
     <main className="main">
       <div className="container">
@@ -13,7 +14,7 @@ function Main() {
                 key={status}
                 column={"column"}
                 columnTitle={status}
-                cards={cardList.filter((card) => card.status === status)}
+                cards={cards.filter((card) => card.status === status)}
               ></Column>
             ))}
           </div>
@@ -21,6 +22,10 @@ function Main() {
       </div>
     </main>
   );
+}
+
+Main.propTypes = {
+  cards: PropTypes.array.isRequired
 }
 
 export default Main;

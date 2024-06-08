@@ -1,13 +1,25 @@
-// import { useState } from 'react'
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
+import { cardList } from "./data";
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [cards, setCards] = useState(cardList);
+
+  function addCard() {
+    const newCard = {
+      id: cards.length + 1,
+      theme: "Web Design",
+      title: "Новая задача",
+      date: "08.06.2024",
+      status: "Без статуса",
+    };
+    setCards([...cards, newCard]);
+  }
 
   return (
     <>
@@ -18,9 +30,9 @@ function App() {
 
         <PopBrowse />
 
-        <Header />
+        <Header onCardAdd={addCard} />
 
-        <Main />
+        <Main cards={cards} />
       </div>
     </>
   );
