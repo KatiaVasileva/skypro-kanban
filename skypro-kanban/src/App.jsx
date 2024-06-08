@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -9,6 +9,7 @@ import { cardList } from "./data";
 
 function App() {
   const [cards, setCards] = useState(cardList);
+  const [isLoading, setIsLoading] = useState(true);
 
   function addCard() {
     const newCard = {
@@ -21,6 +22,12 @@ function App() {
     setCards([...cards, newCard]);
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 секунды задержки
+  }, []);
+
   return (
     <>
       <div className="wrapper">
@@ -32,7 +39,11 @@ function App() {
 
         <Header onCardAdd={addCard} />
 
-        <Main cards={cards} />
+        {isLoading ? (
+          <div className="loader">Загрузка...</div>
+        ) : (
+          <Main cards={cards} />
+        )}
       </div>
     </>
   );
