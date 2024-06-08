@@ -2,7 +2,7 @@ import { statusList } from "../../data";
 import Column from "../Column/Column";
 import PropTypes from "prop-types";
 
-function Main({cards}) {
+function Main({ cards }) {
   return (
     <main className="main">
       <div className="container">
@@ -14,7 +14,7 @@ function Main({cards}) {
                 column={"column"}
                 columnTitle={status}
                 cards={cards.filter((card) => card.status === status)}
-              ></Column>
+              />
             ))}
           </div>
         </div>
@@ -24,7 +24,7 @@ function Main({cards}) {
 }
 
 Main.propTypes = {
-  cards: PropTypes.array.isRequired
-}
+  cards: PropTypes.array.isRequired,
+};
 
 export default Main;

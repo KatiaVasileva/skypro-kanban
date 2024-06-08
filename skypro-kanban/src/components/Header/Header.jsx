@@ -29,7 +29,7 @@ function Header({ onCardAdd }) {
               onClick={onCardAdd}
             >
               {/* <a href="#popNewCard">Создать новую задачу</a> */}
-              <a href="#">Создать новую задачу</a>
+              <span>Создать новую задачу</span>
             </button>
             <a
               href="#user-set-target"
