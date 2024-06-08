@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
+import { colors } from "../../data";
 
-function Card({theme}) {
+function Card({card}) {
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className={"card__theme " + theme.cardThemeColor}>
-            <p className={theme.cardThemeColor}>{theme.cardThemeTitle}</p>
+          <div className={"card__theme " + colors.get(card.theme)}>
+            <p className={colors.get(card.theme)}>{card.theme}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
@@ -18,7 +19,7 @@ function Card({theme}) {
         </div>
         <div className="card__content">
           <a href="" target="_blank">
-            <h3 className="card__title">Название задачи</h3>
+            <h3 className="card__title">{card.title}</h3>
           </a>
           <div className="card__date">
             <svg
@@ -49,7 +50,7 @@ function Card({theme}) {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{card.date}</p>
           </div>
         </div>
       </div>
@@ -58,9 +59,7 @@ function Card({theme}) {
 }
 
 Card.propTypes = {
-    // cardThemeColor: PropTypes.string.isRequired,
-    // cardThemeTitle: PropTypes.string.isRequired
-    theme: PropTypes.object.isRequired
+    card: PropTypes.object.isRequired
 }
 
 export default Card;

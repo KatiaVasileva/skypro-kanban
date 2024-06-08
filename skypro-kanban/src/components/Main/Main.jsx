@@ -1,5 +1,5 @@
 import Card from "../Card/Card";
-import { themes } from "../../data";
+import { statusList, cardList } from "../../data";
 import Column from "../Column/Column";
 
 function Main() {
@@ -8,7 +8,19 @@ function Main() {
       <div className="container">
         <div className="main__block">
           <div className="main__content">
-            <Column column={"column"} columnTitle={"Без статуса"}>
+            {statusList.map((status) => (
+              <Column key={status} column={"column"} columnTitle={status}>
+                {cardList.filter((card) => card.status === status).map((card) => (
+                  <Card key={card.id} card={card} />
+                ))}
+                {/* <Card theme={themes.orange} />
+                <Card theme={themes.green} />
+                <Card theme={themes.orange} />
+                <Card theme={themes.purple} />
+                <Card theme={themes.orange} /> */}
+              </Column>
+            ))}
+            {/* <Column column={"column"} columnTitle={"Без статуса"}>
               <Card theme={themes.orange} />
               <Card theme={themes.green} />
               <Card theme={themes.orange} />
@@ -32,7 +44,7 @@ function Main() {
 
             <Column column={""} columnTitle={"Готово"}>
               <Card theme={themes.green} />
-            </Column>
+            </Column> */}
           </div>
         </div>
       </div>
