@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { colors } from "../../data";
 
-function Card({card}) {
+function Card({ card }) {
   return (
     <div className="cards__item">
       <div className="cards__card card">
@@ -59,7 +59,7 @@ function Card({card}) {
 }
 
 Card.propTypes = {
-    card: PropTypes.object.isRequired
-}
+  card: PropTypes.object.isRequired,
+};
 
 export default Card;

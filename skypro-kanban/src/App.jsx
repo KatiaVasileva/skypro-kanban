@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 2 секунды задержки
+    }, 2000);
   }, []);
 
   return (

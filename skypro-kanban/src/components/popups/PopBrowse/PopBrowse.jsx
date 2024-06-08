@@ -52,7 +52,10 @@ function PopBrowse() {
                 </div>
               </form>
 
-              <Calendar dateEnd={"Срок исполнения: "} dateControl={"09.09.23"}/>
+              <Calendar
+                dateEnd={"Срок исполнения: "}
+                dateControl={"09.09.23"}
+              />
             </div>
 
             <div className="theme-down__categories theme-down">

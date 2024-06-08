@@ -1,4 +1,3 @@
-// import Card from "../Card/Card";
 import { statusList } from "../../data";
 import Column from "../Column/Column";
 import PropTypes from "prop-types";

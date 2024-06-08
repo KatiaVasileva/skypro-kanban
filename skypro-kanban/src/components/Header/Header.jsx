@@ -1,12 +1,12 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function Header({onCardAdd}) {
+function Header({ onCardAdd }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleWindow = ()  => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
-  }
+  const toggleWindow = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
 
   return (
     <header className="header">
@@ -23,28 +23,36 @@ function Header({onCardAdd}) {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew" onClick={onCardAdd}>
-            {/* <a href="#popNewCard">Создать новую задачу</a> */}
+            <button
+              className="header__btn-main-new _hover01"
+              id="btnMainNew"
+              onClick={onCardAdd}
+            >
+              {/* <a href="#popNewCard">Создать новую задачу</a> */}
               <a href="#">Создать новую задачу</a>
             </button>
-            <a href="#user-set-target" className="header__user _hover02" onClick={toggleWindow}>
+            <a
+              href="#user-set-target"
+              className="header__user _hover02"
+              onClick={toggleWindow}
+            >
               Ivan Ivanov
             </a>
             {isOpen && (
               <div
-              className="header__pop-user-set pop-user-set"
-              id="user-set-target"
-            >
-              <p className="pop-user-set__name">Ivan Ivanov</p>
-              <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-              <div className="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" className="checkbox" name="checkbox" />
+                className="header__pop-user-set pop-user-set"
+                id="user-set-target"
+              >
+                <p className="pop-user-set__name">Ivan Ivanov</p>
+                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+                <div className="pop-user-set__theme">
+                  <p>Темная тема</p>
+                  <input type="checkbox" className="checkbox" name="checkbox" />
+                </div>
+                <button type="button" className="_hover03">
+                  <a href="#popExit">Выйти</a>
+                </button>
               </div>
-              <button type="button" className="_hover03">
-                <a href="#popExit">Выйти</a>
-              </button>
-            </div>
             )}
           </nav>
         </div>
@@ -54,7 +62,7 @@ function Header({onCardAdd}) {
 }
 
 Header.propTypes = {
-  onCardAdd: PropTypes.func.isRequired
-}
+  onCardAdd: PropTypes.func.isRequired,
+};
 
 export default Header;
