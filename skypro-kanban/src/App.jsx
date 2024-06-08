@@ -14,7 +14,7 @@ function App() {
   function addCard() {
     const newCard = {
       id: cards.length + 1,
-      theme: "Web Design",
+      topic: "Web Design",
       title: "Новая задача",
       date: "08.06.2024",
       status: "Без статуса",
@@ -40,7 +40,7 @@ function App() {
         <Header onCardAdd={addCard} />
 
         {isLoading ? (
-          <div className="loader">Загрузка...</div>
+          <div className="loader">Данные загружаются...</div>
         ) : (
           <Main cards={cards} />
         )}

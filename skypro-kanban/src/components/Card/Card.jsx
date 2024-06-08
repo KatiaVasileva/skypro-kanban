@@ -6,8 +6,8 @@ function Card({ card }) {
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className={"card__theme " + colors.get(card.theme)}>
-            <p className={colors.get(card.theme)}>{card.theme}</p>
+          <div className={"card__theme " + colors.get(card.topic)}>
+            <p className={colors.get(card.topic)}>{card.topic}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">

@@ -61,7 +61,8 @@ body {
 }
 
 .loader {
-  padding: 30px;
+  padding: 40px;
+  font-weight: 500;
 }
 
 ._hover01:hover {
