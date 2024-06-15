@@ -1,13 +1,32 @@
-// import { useState } from 'react'
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
+import { cardList } from "./data";
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [cards, setCards] = useState(cardList);
+  const [isLoading, setIsLoading] = useState(true);
+
+  function addCard() {
+    const newCard = {
+      id: cards.length + 1,
+      topic: "Web Design",
+      title: "Новая задача",
+      date: "08.06.2024",
+      status: "Без статуса",
+    };
+    setCards([...cards, newCard]);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <>
@@ -18,9 +37,13 @@ function App() {
 
         <PopBrowse />
 
-        <Header />
+        <Header onCardAdd={addCard} />
 
-        <Main />
+        {isLoading ? (
+          <div className="loader">Данные загружаются...</div>
+        ) : (
+          <Main cards={cards} />
+        )}
       </div>
     </>
   );
