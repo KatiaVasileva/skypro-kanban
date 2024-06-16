@@ -57,3 +57,47 @@ export const CardButton = styled(Button)`
     background-color: #94a6be;
   }
 `;
+
+export const ExitYes = styled.a`
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ExitNo = styled(ExitYes)`
+  color: #565eef;
+`;
+
+export const PopExitYesButton = styled(Button)`
+  width: 153px;
+  height: 30px;
+  background-color: #565eef;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #ffffff;
+  margin-right: 10px;
+
+  ${hover01}
+
+  ${ExitYes}
+`;
+
+export const PopExitNoButton = styled(PopExitYesButton)`
+  background-color: transparent;
+  border: 0.7px solid var(--palette-navy-60, #565EEF);
+
+  ${hover03}
+
+  ${ExitNo}
+`;

@@ -1,5 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { topicStyles } from "../../data.js";
+
+const cardAnimation = keyframes`
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        height: auto;
+        opacity: 1;
+    }
+`;
 
 export const Cards = styled.div`
   width: 100%;
@@ -9,7 +21,7 @@ export const Cards = styled.div`
 
 export const CardsItem = styled.div`
   padding: 5px;
-  animation-name: card-animation;
+  animation-name: ${cardAnimation};
   animation-duration: 500ms;
   animation-timing-function: linear;
 `;
@@ -80,10 +92,10 @@ export const CardTheme = styled.div`
   height: 20px;
   padding: 5px 14px;
   border-radius: 18px;
-  background-color: ${({ $themeColor }) => topicStyles[$themeColor]?.backgroundColor || "#94A6BE"};
+  background-color: ${({ $themeColor }) =>
+    topicStyles[$themeColor]?.backgroundColor || "#94A6BE"};
 
   ${ThemeText} {
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
   }
 `;
-

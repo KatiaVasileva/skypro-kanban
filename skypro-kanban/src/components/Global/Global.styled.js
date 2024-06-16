@@ -19,4 +19,14 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Roboto", Arial, Helvetica, sans-serif;
         color: #000000;
     }
+
+    a,
+    a:visited {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    ul li {
+        list-style: none;
+    }
 `;
