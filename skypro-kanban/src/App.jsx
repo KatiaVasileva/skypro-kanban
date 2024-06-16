@@ -6,6 +6,7 @@ import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 import { cardList } from "./data";
+import { GlobalStyle } from "./components/Global/Global.styled";
 
 function App() {
   const [cards, setCards] = useState(cardList);
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyle />
       <div className="wrapper">
         <PopExit />
 
