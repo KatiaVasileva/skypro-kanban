@@ -21,7 +21,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     a,
-    a:visited {
+    a:visited,
+    span {
         text-decoration: none;
         cursor: pointer;
     }

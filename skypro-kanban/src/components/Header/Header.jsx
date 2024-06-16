@@ -18,19 +18,19 @@ function Header({ onCardAdd }) {
         <S.HeaderBlock>
           <S.Logo>
             <a href="" target="_self">
-              <img src="../images/logo.png" alt="logo" />
+              <S.LogoImage src="../images/logo.png" alt="logo" />
             </a>
           </S.Logo>
           <S.LogoDark>
             <a href="" target="_self">
-              <img src="../images/logo_dark.png" alt="logo" />
+              <S.LogoImage src="../images/logo_dark.png" alt="logo" />
             </a>
           </S.LogoDark>
           <S.Nav>
             <HeaderButton id="btnMainNew" onClick={onCardAdd}>
-              <span>Создать новую задачу</span>
+              Создать новую задачу
             </HeaderButton>
-            <S.HeaderUser href="#user-set-target" onClick={toggleWindow}>
+            <S.HeaderUser onClick={toggleWindow}>
               Ivan Ivanov
             </S.HeaderUser>
             {isOpen && <PopUser />}

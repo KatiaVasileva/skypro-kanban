@@ -18,10 +18,6 @@ export const HeaderButton = styled(Button)`
   font-weight: 500;
   margin-right: 20px;
 
-  a {
-    color: #ffffff;
-  }
-
   ${hover01}
 `;
 

@@ -5,13 +5,11 @@ export const Main = styled.main`
   background-color: #eaeef6;
 `;
 
-export const MainBlock = styled.div`
-  width: 100%;
+export const MainBlock = styled(Main)`
   margin: 0 auto;
   padding: 25px 0 49px;
 `;
 
-export const MainContent = styled.div`
-  width: 100%;
+export const MainContent = styled(Main)`
   display: flex;
 `;

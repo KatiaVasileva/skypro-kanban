@@ -27,17 +27,19 @@ export const Nav = styled.nav`
   justify-content: center;
 `;
 
+export const LogoImage = styled.img`
+  width: 85px;
+`;
+
 export const Logo = styled.div`
-  img {
-    width: 85px;
-  }
+  ${LogoImage}
 `;
 
 export const LogoDark = styled(Logo)`
   display: none;
 `;
 
-export const HeaderUser = styled.a`
+export const HeaderUser = styled.span`
   height: 20px;
   display: flex;
   flex-wrap: nowrap;
@@ -62,4 +64,3 @@ export const HeaderUser = styled.a`
 
   ${hover02}
 `;
-
