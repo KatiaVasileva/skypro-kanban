@@ -39,3 +39,21 @@ export const PopUserExitButton = styled(Button)`
 
   ${hover03}
 `;
+
+export const CardButton = styled(Button)`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2px;
+  border: none;
+  background-color: #fff;
+
+  div {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #94a6be;
+  }
+`;

@@ -19,7 +19,6 @@ function Column({ columnTitle, cards }) {
 }
 
 Column.propTypes = {
-  column: PropTypes.string.isRequired,
   columnTitle: PropTypes.string.isRequired,
   cards: PropTypes.array.isRequired,
 };
