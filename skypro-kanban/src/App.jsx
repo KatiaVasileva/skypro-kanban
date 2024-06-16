@@ -7,6 +7,7 @@ import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 import { cardList } from "./data";
 import { GlobalStyle } from "./components/Global/Global.styled";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [cards, setCards] = useState(cardList);
@@ -42,7 +43,7 @@ function App() {
         <Header onCardAdd={addCard} />
 
         {isLoading ? (
-          <div className="loader">Данные загружаются...</div>
+          <Loader />
         ) : (
           <Main cards={cards} />
         )}

@@ -28,11 +28,6 @@ ul li {
   background-color: #F1F1F1;
 }
 
-.loader {
-  padding: 40px;
-  font-weight: 500;
-}
-
 .pop-user-set:target,
 .pop-exit:target,
 .pop-new-card:target,
