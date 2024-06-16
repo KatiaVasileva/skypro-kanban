@@ -13,7 +13,6 @@ function Main({ cards }) {
             {statusList.map((status) => (
               <Column
                 key={status}
-                column={"column"}
                 columnTitle={status}
                 cards={cards.filter((card) => card.status === status)}
               />

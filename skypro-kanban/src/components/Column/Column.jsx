@@ -1,18 +1,20 @@
 import PropTypes from "prop-types";
 import Card from "../Card/Card";
+import * as S from "./Column.styled";
+import { Cards } from "../Card/Card.styled";
 
-function Column({ column, columnTitle, cards }) {
+function Column({ columnTitle, cards }) {
   return (
-    <div className={"main__column " + column}>
-      <div className="column__title">
+    <S.Column>
+      <S.ColumnTitle>
         <p>{columnTitle}</p>
-      </div>
-      <div className="cards">
+      </S.ColumnTitle>
+      <Cards>
         {cards.map((card) => (
           <Card key={card.id} card={card} />
         ))}
-      </div>
-    </div>
+      </Cards>
+    </S.Column>
   );
 }
 
