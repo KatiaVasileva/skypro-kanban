@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../../lib/breakpoints.js";
 
 export const PopExit = styled.div`
   display: none;
@@ -38,6 +39,10 @@ export const PopExitBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+
+  @media screen and (max-width: ${breakpoints.sm + "px"}) {
+    padding: 50px 20px;
+  }
 `;
 
 export const TitleText = styled.h2`
@@ -58,6 +63,12 @@ export const PopExitFormGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: ${breakpoints.sm + "px"}) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const PopExitForm = styled.form`

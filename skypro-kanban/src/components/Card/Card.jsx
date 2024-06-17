@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import * as S from "./Card.styled";
-import { CardButton } from "../Button/Button.styled";
-import { colors } from "../../data";
+import { CardButton, CardButtonDot } from "../Button/Button.styled";
+import { colors } from "../../lib/topicStyles.js";
 
 function Card({ card }) {
   return (
@@ -13,9 +13,9 @@ function Card({ card }) {
           </S.CardTheme>
           <a href="#popBrowse" target="_self">
             <CardButton>
-              <div></div>
-              <div></div>
-              <div></div>
+              <CardButtonDot />
+              <CardButtonDot />
+              <CardButtonDot />
             </CardButton>
           </a>
         </S.CardGroup>
@@ -24,7 +24,7 @@ function Card({ card }) {
             <S.CardTitle>{card.title}</S.CardTitle>
           </a>
           <S.CardDate>
-            <svg
+            <S.DateImage
               xmlns="http://www.w3.org/2000/svg"
               width="13"
               height="13"
@@ -51,8 +51,8 @@ function Card({ card }) {
                   <rect width="13" height="13" fill="white" />
                 </clipPath>
               </defs>
-            </svg>
-            <p>{card.date}</p>
+            </S.DateImage>
+            <S.Date>{card.date}</S.Date>
           </S.CardDate>
         </S.CardContent>
       </S.Card>

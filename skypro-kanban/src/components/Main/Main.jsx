@@ -1,4 +1,4 @@
-import { statusList } from "../../data";
+import { statusList } from "../../lib/data";
 import Column from "../Column/Column";
 import PropTypes from "prop-types";
 import * as S from "./Main.styled";

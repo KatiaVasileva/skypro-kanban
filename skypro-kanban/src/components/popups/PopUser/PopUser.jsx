@@ -7,8 +7,8 @@ function PopUser() {
       <S.Name>Ivan Ivanov</S.Name>
       <S.Mail>ivan.ivanov@gmail.com</S.Mail>
       <S.Theme>
-        <p>Темная тема</p>
-        <input type="checkbox" className="checkbox" name="checkbox" />
+        <S.DarkThemeText>Темная тема</S.DarkThemeText>
+        <S.Checkbox type="checkbox" name="checkbox" />
       </S.Theme>
       <PopUserExitButton type="button">
         <a href="#popExit">Выйти</a>

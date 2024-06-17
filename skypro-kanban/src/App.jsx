@@ -5,7 +5,7 @@ import Main from "./components/Main/Main";
 import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
-import { cardList } from "./data";
+import { cardList } from "./lib/data";
 import { GlobalStyle } from "./components/Global/Global.styled";
 import Loader from "./components/Loader/Loader";
 import { Wrapper } from "./components/Common/Common.styled";

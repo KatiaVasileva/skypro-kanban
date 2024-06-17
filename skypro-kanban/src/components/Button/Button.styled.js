@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { hover01, hover03 } from "../Common/Common.styled";
+import { breakpoints } from "../../lib/breakpoints.js";
 
 export const Button = styled.button`
   cursor: pointer;
@@ -19,6 +20,18 @@ export const HeaderButton = styled(Button)`
   margin-right: 20px;
 
   ${hover01}
+
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
+    z-index: 3;
+    position: fixed;
+    left: 16px;
+    bottom: 30px;
+    top: auto;
+    width: calc(100vw - 32px);
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 0;
+  }
 `;
 
 export const PopUserExitButton = styled(Button)`
@@ -29,11 +42,14 @@ export const PopUserExitButton = styled(Button)`
   border-radius: 4px;
   border: 1px solid #565eef;
 
-  a {
-    color: #565eef;
-  }
-
   ${hover03}
+`;
+
+export const CardButtonDot = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #94a6be;
 `;
 
 export const CardButton = styled(Button)`
@@ -46,12 +62,7 @@ export const CardButton = styled(Button)`
   border: none;
   background-color: #fff;
 
-  div {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #94a6be;
-  }
+  ${CardButtonDot}
 `;
 
 export const ExitYes = styled.a`
@@ -87,13 +98,25 @@ export const PopExitYesButton = styled(Button)`
   ${hover01}
 
   ${ExitYes}
+
+  @media screen and (max-width: ${breakpoints.sm + "px"}) {
+    width: 100%;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 export const PopExitNoButton = styled(PopExitYesButton)`
   background-color: transparent;
-  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  border: 0.7px solid var(--palette-navy-60, #565eef);
 
   ${hover03}
 
   ${ExitNo}
+
+  @media screen and (max-width: ${breakpoints.sm + "px"}) {
+    width: 100%;
+    height: 40px;
+  }
 `;

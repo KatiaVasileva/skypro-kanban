@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import { topicStyles } from "../../data.js";
+import { breakpoints } from "../../lib/breakpoints.js";
+import { topicStyles } from "../../lib/topicStyles.js";
 
 const cardAnimation = keyframes`
     0% {
@@ -17,6 +18,12 @@ export const Cards = styled.div`
   width: 100%;
   display: block;
   position: relative;
+
+  @media screen and (max-width: ${breakpoints.xl + "px"}) {
+    width: 100%;
+    display: flex;
+    overflow-y: auto;
+  }
 `;
 
 export const CardsItem = styled.div`
@@ -63,22 +70,26 @@ export const CardTitle = styled.h3`
   margin-bottom: 10px;
 `;
 
+export const DateImage = styled.svg`
+  width: 13px;
+`;
+
+export const Date = styled.p`
+  margin-left: 6px;
+  font-size: 10px;
+  line-height: 13px;
+  color: #94a6be;
+  letter-spacing: 0.2px;
+`;
+
 export const CardDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
-  svg {
-    width: 13px;
-  }
+  ${DateImage}
 
-  p {
-    margin-left: 6px;
-    font-size: 10px;
-    line-height: 13px;
-    color: #94a6be;
-    letter-spacing: 0.2px;
-  }
+  ${Date}
 `;
 
 export const ThemeText = styled.p`

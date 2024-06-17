@@ -7,7 +7,7 @@ function Column({ columnTitle, cards }) {
   return (
     <S.Column>
       <S.ColumnTitle>
-        <p>{columnTitle}</p>
+        <S.ColumnTitleText>{columnTitle}</S.ColumnTitleText>
       </S.ColumnTitle>
       <Cards>
         {cards.map((card) => (
