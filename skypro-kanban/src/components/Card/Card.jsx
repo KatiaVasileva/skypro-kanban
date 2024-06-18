@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import * as S from "./Card.styled";
-import { CardButton, CardButtonDot } from "../Button/Button.styled";
 import { colors } from "../../lib/topicStyles.js";
+import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
 
 function Card({ card }) {
   return (

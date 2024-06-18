@@ -1,9 +1,5 @@
-import {
-  ExitNo,
-  ExitYes,
-  PopExitNoButton,
-  PopExitYesButton,
-} from "../../Button/Button.styled";
+
+import { PopExitYesButton, PopExitNoButton, ExitYes, ExitNo } from "../../../styles/Button.styled";
 import * as S from "./PopExit.styled";
 
 function PopExit() {

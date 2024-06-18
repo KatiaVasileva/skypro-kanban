@@ -6,9 +6,9 @@ import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 import { cardList } from "./lib/data";
-import { GlobalStyle } from "./components/Global/Global.styled";
+import { GlobalStyle } from "./styles/Global.styled";
 import Loader from "./components/Loader/Loader";
-import { Wrapper } from "./components/Common/Common.styled";
+import { Wrapper } from "./styles/Common.styled";
 
 function App() {
   const [cards, setCards] = useState(cardList);

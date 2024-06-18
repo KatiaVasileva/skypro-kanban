@@ -2,8 +2,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import * as S from "./Header.styled";
 import PopUser from "../popups/PopUser/PopUser";
-import { HeaderButton } from "../Button/Button.styled";
-import { Container } from "../Common/Common.styled";
+import { HeaderButton } from "../../styles/Button.styled.js";
+import { Container } from "../../styles/Common.styled.js";
 
 function Header({ onCardAdd }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,9 +30,7 @@ function Header({ onCardAdd }) {
             <HeaderButton id="btnMainNew" onClick={onCardAdd}>
               Создать новую задачу
             </HeaderButton>
-            <S.HeaderUser onClick={toggleWindow}>
-              Ivan Ivanov
-            </S.HeaderUser>
+            <S.HeaderUser onClick={toggleWindow}>Ivan Ivanov</S.HeaderUser>
             {isOpen && <PopUser />}
           </S.Nav>
         </S.HeaderBlock>

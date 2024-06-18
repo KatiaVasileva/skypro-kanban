@@ -2,7 +2,7 @@ import { statusList } from "../../lib/data";
 import Column from "../Column/Column";
 import PropTypes from "prop-types";
 import * as S from "./Main.styled";
-import { Container } from "../Common/Common.styled";
+import { Container } from "../../styles/Common.styled";
 
 function Main({ cards }) {
   return (

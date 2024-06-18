@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { hover01, hover03 } from "../Common/Common.styled";
-import { breakpoints } from "../../lib/breakpoints.js";
+import { hover01, hover03 } from "./Common.styled.js";
+import { breakpoints } from "../lib/breakpoints.js";
 
 export const Button = styled.button`
   cursor: pointer;

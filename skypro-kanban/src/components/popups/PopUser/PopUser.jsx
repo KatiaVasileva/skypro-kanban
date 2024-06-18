@@ -1,4 +1,4 @@
-import { PopUserExitButton } from "../../Button/Button.styled";
+import { PopUserExitButton } from "../../../styles/Button.styled";
 import * as S from "./PopUser.styled";
 
 function PopUser() {

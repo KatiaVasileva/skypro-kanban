@@ -39,7 +39,7 @@ export const hover02 = css`
 
 export const hover03 = css`
   &:hover {
-    background-color: #33399b;
+    background-color: #565eef;
     color: #ffffff;
 
     a {

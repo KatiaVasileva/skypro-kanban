@@ -1,4 +1,4 @@
-import { Container } from "../Common/Common.styled";
+import { Container } from "../../styles/Common.styled";
 import * as S from "./Loader.styled";
 
 function Loader() {
