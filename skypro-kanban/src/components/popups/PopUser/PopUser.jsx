@@ -10,7 +10,7 @@ function PopUser() {
         <S.DarkThemeText>Темная тема</S.DarkThemeText>
         <S.Checkbox type="checkbox" name="checkbox" />
       </S.Theme>
-      <PopUserExitButton type="button">
+      <PopUserExitButton>
         <a href="#popExit">Выйти</a>
       </PopUserExitButton>
     </S.PopUser>

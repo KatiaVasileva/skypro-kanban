@@ -42,6 +42,10 @@ export const PopUserExitButton = styled(Button)`
   border-radius: 4px;
   border: 1px solid #565eef;
 
+  a {
+    color: #565eef;
+  }
+
   ${hover03}
 `;
 
