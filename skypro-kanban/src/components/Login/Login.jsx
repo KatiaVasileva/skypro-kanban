@@ -1,9 +1,9 @@
 import { AppRoutes } from "../../lib/appRoutes";
 import {
-  LoginButtonEnter,
-  LoginButtonEnterLink,
+  ButtonEnter,
+  ButtonEnterLink,
 } from "../../styles/Button.styled";
-import * as S from "./Login.styled";
+import * as S from "../../styles/Auth.styled"
 
 function Login() {
   return (
@@ -13,7 +13,7 @@ function Login() {
           <S.Title>
             <h2>Вход</h2>
           </S.Title>
-          <S.FormLogin id="formLogIn" action="#">
+          <S.InputForm id="formLogIn" action="#">
             <S.Input
               type="text"
               name="login"
@@ -26,20 +26,20 @@ function Login() {
               id="formpassword"
               placeholder="Пароль"
             />
-            <LoginButtonEnter id="btnEnter">
-              <LoginButtonEnterLink to={AppRoutes.MAIN}>
+            <ButtonEnter id="btnEnter">
+              <ButtonEnterLink to={AppRoutes.MAIN}>
                 Войти
-              </LoginButtonEnterLink>
-            </LoginButtonEnter>
+              </ButtonEnterLink>
+            </ButtonEnter>
             <S.FormGroup>
               <S.FormGroupRegisterText>
                 Нужно зарегистрироваться?
               </S.FormGroupRegisterText>
-              <S.FormGroupRegisterLink to="/">
+              <S.FormGroupRegisterLink to={AppRoutes.REGISTER}>
                 Регистрируйтесь здесь
               </S.FormGroupRegisterLink>
             </S.FormGroup>
-          </S.FormLogin>
+          </S.InputForm>
         </S.Block>
       </S.Modal>
     </S.ContainerSignin>

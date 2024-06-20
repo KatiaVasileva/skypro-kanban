@@ -130,7 +130,7 @@ export const LoginButton = styled.button`
   cursor: pointer;
 `;
 
-export const LoginButtonEnterLink = styled(Link)`
+export const ButtonEnterLink = styled(Link)`
   width: 100%;
   height: 100%;
   color: #ffffff;
@@ -139,7 +139,7 @@ export const LoginButtonEnterLink = styled(Link)`
   justify-content: center;
 `;
 
-export const LoginButtonEnter = styled(LoginButton)`
+export const ButtonEnter = styled(LoginButton)`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -157,7 +157,7 @@ export const LoginButtonEnter = styled(LoginButton)`
   letter-spacing: -0.14px;
   color: #ffffff;
 
-  ${LoginButtonEnterLink}
+  ${ButtonEnterLink}
 
   ${hover01}
 

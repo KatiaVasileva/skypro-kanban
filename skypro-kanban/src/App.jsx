@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import { AppRoutes } from "./lib/appRoutes";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./routes/PrivateRoute";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   const isAuth = false;
@@ -16,6 +17,7 @@ function App() {
         </Route>
 
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
       </Routes>
     </>
   );

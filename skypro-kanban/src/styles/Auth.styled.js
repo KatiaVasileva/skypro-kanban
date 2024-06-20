@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../lib/breakpoints";
+import { breakpoints } from "../lib/breakpoints";
 import { Link } from "react-router-dom";
 
 export const ContainerSignin = styled.div`
@@ -74,7 +74,7 @@ export const Input = styled.input`
   }
 `;
 
-export const FormLogin = styled.form`
+export const InputForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
