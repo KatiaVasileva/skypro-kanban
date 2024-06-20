@@ -5,7 +5,10 @@ import Main from "./components/Main/Main";
 import PopBrowse from "./components/popups/PopBrowse/PopBrowse";
 import PopExit from "./components/popups/PopExit/PopExit";
 import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
-import { cardList } from "./data";
+import { cardList } from "./lib/data";
+import { GlobalStyle } from "./styles/Global.styled";
+import Loader from "./components/Loader/Loader";
+import { Wrapper } from "./styles/Common.styled";
 
 function App() {
   const [cards, setCards] = useState(cardList);
@@ -30,7 +33,8 @@ function App() {
 
   return (
     <>
-      <div className="wrapper">
+      <GlobalStyle />
+      <Wrapper>
         <PopExit />
 
         <PopNewCard />
@@ -39,12 +43,8 @@ function App() {
 
         <Header onCardAdd={addCard} />
 
-        {isLoading ? (
-          <div className="loader">Данные загружаются...</div>
-        ) : (
-          <Main cards={cards} />
-        )}
-      </div>
+        {isLoading ? <Loader /> : <Main cards={cards} />}
+      </Wrapper>
     </>
   );
 }

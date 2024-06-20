@@ -1,28 +1,30 @@
 import PropTypes from "prop-types";
-import { colors } from "../../data";
+import * as S from "./Card.styled";
+import { colors } from "../../lib/topicStyles.js";
+import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
 
 function Card({ card }) {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className={"card__theme " + colors.get(card.topic)}>
-            <p className={colors.get(card.topic)}>{card.topic}</p>
-          </div>
+    <S.CardsItem>
+      <S.Card>
+        <S.CardGroup>
+          <S.CardTheme $themeColor={colors.get(card.topic)}>
+            <S.ThemeText>{card.topic}</S.ThemeText>
+          </S.CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <CardButton>
+              <CardButtonDot />
+              <CardButtonDot />
+              <CardButtonDot />
+            </CardButton>
           </a>
-        </div>
-        <div className="card__content">
+        </S.CardGroup>
+        <S.CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{card.title}</h3>
+            <S.CardTitle>{card.title}</S.CardTitle>
           </a>
-          <div className="card__date">
-            <svg
+          <S.CardDate>
+            <S.DateImage
               xmlns="http://www.w3.org/2000/svg"
               width="13"
               height="13"
@@ -49,12 +51,12 @@ function Card({ card }) {
                   <rect width="13" height="13" fill="white" />
                 </clipPath>
               </defs>
-            </svg>
-            <p>{card.date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            </S.DateImage>
+            <S.Date>{card.date}</S.Date>
+          </S.CardDate>
+        </S.CardContent>
+      </S.Card>
+    </S.CardsItem>
   );
 }
 
