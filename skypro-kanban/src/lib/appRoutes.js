@@ -6,4 +6,4 @@ export const AppRoutes = {
   EXIT: "/exit",
   NOT_FOUND: "*"
 };
-  
+
