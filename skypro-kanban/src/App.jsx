@@ -5,15 +5,18 @@ import { AppRoutes } from "./lib/appRoutes";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./routes/PrivateRoute";
 import RegisterPage from "./pages/RegisterPage";
+import CardBrowsePage from "./pages/CardBrowsePage";
 
 function App() {
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <>
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
-          <Route path={AppRoutes.MAIN} element={<MainPage />} />
+          <Route path={AppRoutes.MAIN} element={<MainPage />}>
+            <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
+          </Route>
         </Route>
 
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />

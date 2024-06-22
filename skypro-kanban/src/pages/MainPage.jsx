@@ -4,10 +4,10 @@ import { GlobalStyle } from "../styles/Global.styled";
 import { Wrapper } from "../styles/Common.styled";
 import PopExit from "../components/popups/PopExit/PopExit";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
-import PopBrowse from "../components/popups/PopBrowse/PopBrowse";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
+import { Outlet } from "react-router-dom";
 
 export default function MainPage() {
   const [cards, setCards] = useState(cardList);
@@ -38,11 +38,16 @@ export default function MainPage() {
 
         <PopNewCard />
 
-        <PopBrowse />
-
         <Header onCardAdd={addCard} />
 
-        {isLoading ? <Loader /> : <Main cards={cards} />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <Main cards={cards}></Main>
+            <Outlet />
+          </>
+        )}
       </Wrapper>
     </>
   );

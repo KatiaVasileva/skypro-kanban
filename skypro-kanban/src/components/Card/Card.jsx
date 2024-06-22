@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import * as S from "./Card.styled";
 import { colors } from "../../lib/topicStyles.js";
 import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
+import { Link } from "react-router-dom";
 
 function Card({ card }) {
   return (
@@ -11,13 +12,13 @@ function Card({ card }) {
           <S.CardTheme $themeColor={colors.get(card.topic)}>
             <S.ThemeText>{card.topic}</S.ThemeText>
           </S.CardTheme>
-          <a href="#popBrowse" target="_self">
+          <Link to={"/card/" + card.id}>
             <CardButton>
               <CardButtonDot />
               <CardButtonDot />
               <CardButtonDot />
             </CardButton>
-          </a>
+          </Link>
         </S.CardGroup>
         <S.CardContent>
           <a href="" target="_blank">
