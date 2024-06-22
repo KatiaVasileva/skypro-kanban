@@ -1,6 +1,5 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "./pages/MainPage";
 import { AppRoutes } from "./lib/appRoutes";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./routes/PrivateRoute";
@@ -14,7 +13,7 @@ function App() {
     <>
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
-          <Route path={AppRoutes.MAIN} element={<MainPage />}>
+          <Route path={AppRoutes.MAIN}>
             <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
           </Route>
         </Route>
