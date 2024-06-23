@@ -16,7 +16,8 @@ function PopBrowse({ cardId }) {
               </div>
             </div>
             <div className="pop-browse__status status">
-              <p>{"ID: " + cardId}</p>
+              <p className="pop-browse__id">{"Идентификационный номер задачи: " + cardId}</p>
+              <br />
               <p className="status__p subttl">Статус</p>
               <div className="status__themes">
                 <div className="status__theme _hide">
