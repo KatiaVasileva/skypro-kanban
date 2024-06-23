@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints.js";
 
 export const PopExit = styled.div`
-  display: none;
+  display: block;
   width: 100%;
   height: 100%;
   min-width: 320px;

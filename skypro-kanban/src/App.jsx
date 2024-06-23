@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
           <Route path={AppRoutes.MAIN}>
-            <Route path={AppRoutes.EXIT} element={<ExitPage />} />
             <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
+            <Route path={AppRoutes.EXIT} element={<ExitPage />} />
           </Route>
         </Route>
 

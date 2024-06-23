@@ -1,10 +1,5 @@
-import { PopExit } from "../components/popups/PopExit/PopExit.styled";
-import { Wrapper } from "../styles/Common.styled";
+import PopExit from "../components/popups/PopExit/PopExit";
 
 export default function ExitPage() {
-    return (
-        <Wrapper>
-            <PopExit />
-        </Wrapper>
-    );
+    return <PopExit/>;
 }

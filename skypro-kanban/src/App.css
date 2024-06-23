@@ -1,7 +1,4 @@
-.pop-user-set:target,
-.pop-exit:target,
-.pop-new-card:target,
-.pop-browse:target {
+.pop-new-card:target {
   display: block;
 }
 

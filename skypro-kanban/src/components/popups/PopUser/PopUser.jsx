@@ -1,11 +1,13 @@
 // import { Link } from "react-router-dom";
 // import { AppRoutes } from "../../../lib/appRoutes";
+import { Link } from "react-router-dom";
 import { PopUserExitButton } from "../../../styles/Button.styled";
 import * as S from "./PopUser.styled";
+import { AppRoutes } from "../../../lib/appRoutes";
 
 function PopUser() {
   return (
-    <S.PopUser id="user-set-target">
+    <S.PopUser>
       <S.Name>Ivan Ivanov</S.Name>
       <S.Mail>ivan.ivanov@gmail.com</S.Mail>
       <S.Theme>
@@ -13,8 +15,8 @@ function PopUser() {
         <S.Checkbox type="checkbox" name="checkbox" />
       </S.Theme>
       <PopUserExitButton>
-        {/* <Link to={AppRoutes.LOGIN}>Выйти</Link> */}
-        <a href="#popExit">Выйти</a>
+        <Link to={AppRoutes.EXIT}>Выйти</Link>
+        {/* <a href="#popExit">Выйти</a> */}
       </PopUserExitButton>
     </S.PopUser>
   );
