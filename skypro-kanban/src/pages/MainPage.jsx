@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { cardList } from "../lib/data";
-import { GlobalStyle } from "../styles/Global.styled";
 import { Wrapper } from "../styles/Common.styled";
-// import PopExit from "../components/popups/PopExit/PopExit";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
@@ -32,10 +30,7 @@ export default function MainPage() {
 
   return (
     <>
-      <GlobalStyle />
       <Wrapper>
-        {/* <PopExit /> */}
-
         <PopNewCard />
 
         <Header onCardAdd={addCard} />
