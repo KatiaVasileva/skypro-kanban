@@ -1,11 +1,9 @@
 import { AppRoutes } from "../../lib/appRoutes";
-import {
-  ButtonEnter,
-  ButtonEnterLink,
-} from "../../styles/Button.styled";
-import * as S from "../../styles/Auth.styled"
+import { ButtonEnter, ButtonEnterLink } from "../../styles/Button.styled";
+import * as S from "../../styles/Auth.styled";
+import PropTypes from "prop-types";
 
-function Login() {
+function Login({ onClick }) {
   return (
     <S.ContainerSignin>
       <S.Modal>
@@ -27,7 +25,7 @@ function Login() {
               placeholder="Пароль"
             />
             <ButtonEnter id="btnEnter">
-              <ButtonEnterLink to={AppRoutes.MAIN}>
+              <ButtonEnterLink to={AppRoutes.MAIN} onClick={onClick}>
                 Войти
               </ButtonEnterLink>
             </ButtonEnter>
@@ -45,5 +43,9 @@ function Login() {
     </S.ContainerSignin>
   );
 }
+
+Login.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Login;
