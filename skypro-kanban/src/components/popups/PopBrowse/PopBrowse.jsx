@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import Calendar from "../../Calendar/Calender";
+import PropTypes from "prop-types";
+import { AppRoutes } from "../../../lib/appRoutes";
 
-function PopBrowse() {
+function PopBrowse({ cardId }) {
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -13,6 +16,8 @@ function PopBrowse() {
               </div>
             </div>
             <div className="pop-browse__status status">
+              <p className="pop-browse__id">{"Идентификационный номер задачи: " + cardId}</p>
+              <br />
               <p className="status__p subttl">Статус</p>
               <div className="status__themes">
                 <div className="status__theme _hide">
@@ -74,7 +79,7 @@ function PopBrowse() {
                 </button>
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
@@ -101,6 +106,10 @@ function PopBrowse() {
       </div>
     </div>
   );
+}
+
+PopBrowse.propTypes = {
+  cardId: PropTypes.string.isRequired
 }
 
 export default PopBrowse;

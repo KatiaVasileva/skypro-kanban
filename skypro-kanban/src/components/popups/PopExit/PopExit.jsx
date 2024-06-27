@@ -1,8 +1,14 @@
-
-import { PopExitYesButton, PopExitNoButton, ExitYes, ExitNo } from "../../../styles/Button.styled";
+import { AppRoutes } from "../../../lib/appRoutes";
+import {
+  PopExitYesButton,
+  PopExitNoButton,
+  ExitYes,
+  ExitNo,
+} from "../../../styles/Button.styled";
 import * as S from "./PopExit.styled";
+import PropTypes from "prop-types";
 
-function PopExit() {
+function PopExit({ onClick }) {
   return (
     <S.PopExit id="popExit">
       <S.PopExitContainer>
@@ -13,10 +19,10 @@ function PopExit() {
           <S.PopExitForm id="formExit" action="#">
             <S.PopExitFormGroup>
               <PopExitYesButton id="exitYes">
-                <ExitYes href="modal/signin.html">Да, выйти</ExitYes>
+                <ExitYes onClick={onClick}>Да, выйти</ExitYes>
               </PopExitYesButton>
               <PopExitNoButton id="exitNo">
-                <ExitNo href="main.html">Нет, остаться</ExitNo>
+                <ExitNo to={AppRoutes.MAIN}>Нет, остаться</ExitNo>
               </PopExitNoButton>
             </S.PopExitFormGroup>
           </S.PopExitForm>
@@ -25,5 +31,9 @@ function PopExit() {
     </S.PopExit>
   );
 }
+
+PopExit.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default PopExit;
