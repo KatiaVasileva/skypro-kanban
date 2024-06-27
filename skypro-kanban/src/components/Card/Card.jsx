@@ -4,15 +4,15 @@ import { colors } from "../../lib/topicStyles.js";
 import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
 import { Link } from "react-router-dom";
 
-function Card({ card }) {
+function Card({ task }) {
   return (
     <S.CardsItem>
       <S.Card>
         <S.CardGroup>
-          <S.CardTheme $themeColor={colors.get(card.topic)}>
-            <S.ThemeText>{card.topic}</S.ThemeText>
+          <S.CardTheme $themeColor={colors.get(task.topic)}>
+            <S.ThemeText>{task.topic}</S.ThemeText>
           </S.CardTheme>
-          <Link to={"/card/" + card.id}>
+          <Link to={"/card/" + task._id}>
             <CardButton>
               <CardButtonDot />
               <CardButtonDot />
@@ -22,7 +22,7 @@ function Card({ card }) {
         </S.CardGroup>
         <S.CardContent>
           <a href="" target="_blank">
-            <S.CardTitle>{card.title}</S.CardTitle>
+            <S.CardTitle>{task.title}</S.CardTitle>
           </a>
           <S.CardDate>
             <S.DateImage
@@ -53,7 +53,7 @@ function Card({ card }) {
                 </clipPath>
               </defs>
             </S.DateImage>
-            <S.Date>{card.date}</S.Date>
+            <S.Date>{task.date}</S.Date>
           </S.CardDate>
         </S.CardContent>
       </S.Card>
@@ -62,7 +62,7 @@ function Card({ card }) {
 }
 
 Card.propTypes = {
-  card: PropTypes.object.isRequired,
+  task: PropTypes.object.isRequired,
 };
 
 export default Card;

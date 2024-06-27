@@ -6,10 +6,12 @@ import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../api";
 
 export default function MainPage() {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
+  const [tasks, setTasks] = useState([]);
 
   function addCard() {
     const newCard = {
@@ -28,6 +30,12 @@ export default function MainPage() {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    getTasks().then((tasks) => {
+      setTasks(tasks.tasks);
+    });
+  }, []);
+
   return (
     <>
       <Wrapper>
@@ -39,7 +47,7 @@ export default function MainPage() {
           <Loader />
         ) : (
           <>
-            <Main cards={cards}></Main>
+            <Main tasks={tasks}></Main>
             <Outlet />
           </>
         )}
