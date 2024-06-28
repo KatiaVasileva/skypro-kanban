@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
-import { cardList } from "../lib/data";
 import { Wrapper } from "../styles/Common.styled";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
-import { getTasks } from "../api";
+import { addTask, getTasks } from "../api";
+import { inputHandler } from "../lib/helpers";
 
 export default function MainPage() {
-  const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
 
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      topic: "Web Design",
-      title: "Новая задача",
-      date: "08.06.2024",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
+  const newCard = {
+    title: " ",
+    topic: " ",
+    status: "Тестирование",
+    description: "Подробное описание задачи",
+    date: "",
+  }
+
+  const handleAddCardButton = async () => {
+    const newTasks = await addTask({
+      title: inputHandler(newCard.title, "Новая задача"),
+      topic: inputHandler(newCard.topic, "Research"),
+      status: inputHandler(newCard.status, "Без статуса"),
+      description: inputHandler(newCard.description, " "),
+      date: inputHandler(newCard.date, Date.now()),
+    });
+    setTasks(newTasks.tasks);
   }
 
   useEffect(() => {
@@ -41,7 +48,7 @@ export default function MainPage() {
       <Wrapper>
         <PopNewCard />
 
-        <Header onCardAdd={addCard} />
+        <Header onCardAdd={handleAddCardButton} />
 
         {isLoading ? (
           <Loader />
