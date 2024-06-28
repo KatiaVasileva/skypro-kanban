@@ -1,19 +1,8 @@
 import { useParams } from "react-router-dom";
 import PopBrowse from "../components/popups/PopBrowse/PopBrowse";
-import { deleteTask } from "../api";
-import PropTypes from "prop-types";
 
-export default function CardBrowsePage(setTasks) {
+export default function CardBrowsePage() {
   let { id } = useParams();
 
-  const handleDeleteButton = async () => {
-    const newTasks = await deleteTask(id);
-    setTasks(newTasks.tasks);
-  }
-
-  return <PopBrowse cardId={id} onClick={handleDeleteButton}/>;
-}
-
-CardBrowsePage.propTypes = {
-  setTasks: PropTypes.func.isRequired
+  return <PopBrowse cardId={id} />;
 }

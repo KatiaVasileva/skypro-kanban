@@ -60,17 +60,4 @@ export async function addTask({ title, topic, status, description, date }) {
   return response.json();
 }
 
-// Удалить задачу
-export async function deleteTask(taskId) {
-  const response = await fetch(baseHost + "/kanban/" + taskId, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
 
-  if (response.status === 401) {
-    throw new Error("Нет авторизации");
-  }
-  return response.json();
-}
