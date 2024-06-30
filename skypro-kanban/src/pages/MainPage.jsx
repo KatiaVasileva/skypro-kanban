@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Wrapper } from "../styles/Common.styled";
+import { ErrorMessage, Wrapper } from "../styles/Common.styled";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
@@ -9,18 +9,20 @@ import { addTask, getTasks } from "../api";
 import { inputHandler } from "../lib/helpers";
 
 export default function MainPage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [getTasksError, setGetTasksError] = useState(false);
 
   const newCard = {
     title: " ",
     topic: " ",
-    status: "Тестирование",
+    status: " ",
     description: "Подробное описание задачи",
     date: "",
-  }
+  };
 
   const handleAddCardButton = async () => {
+    setGetTasksError(false);
     const newTasks = await addTask({
       title: inputHandler(newCard.title, "Новая задача"),
       topic: inputHandler(newCard.topic, "Research"),
@@ -29,7 +31,7 @@ export default function MainPage() {
       date: inputHandler(newCard.date, Date.now()),
     });
     setTasks(newTasks.tasks);
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,9 +40,15 @@ export default function MainPage() {
   }, []);
 
   useEffect(() => {
-    getTasks().then((tasks) => {
-      setTasks(tasks.tasks);
-    });
+    setIsLoading(true);
+    getTasks()
+      .then((tasks) => {
+        setIsLoading(false);
+        setTasks(tasks.tasks);
+      })
+      .catch(() => {
+        setGetTasksError("Не удалось загрузить данные, попробуйте позже.");
+      });
   }, []);
 
   return (
@@ -48,14 +56,21 @@ export default function MainPage() {
       <Wrapper>
         <PopNewCard />
 
-        <Header onCardAdd={handleAddCardButton} />
+        <Header onCardAdd={handleAddCardButton}></Header>
 
         {isLoading ? (
-          <Loader />
+          <>
+            <Loader />
+          </>
         ) : (
           <>
-            <Main tasks={tasks}></Main>
-            <Outlet />
+            {getTasksError && <ErrorMessage>{getTasksError}</ErrorMessage>}
+            {!getTasksError && (
+              <>
+                <Main tasks={tasks}></Main>
+                <Outlet />
+              </>
+            )}
           </>
         )}
       </Wrapper>

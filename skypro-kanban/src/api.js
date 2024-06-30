@@ -58,6 +58,10 @@ export async function getTasks() {
     throw new Error("Нет авторизации");
   }
 
+  if (response.status === 500) {
+    throw new Error("Не удалось загрузить данные, попробуйте позже");
+  }
+
   return response.json();
 }
 
