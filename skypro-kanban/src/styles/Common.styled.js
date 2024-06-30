@@ -14,10 +14,15 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 30px;
 
-  @media screen and (max-width: 495px){
+  @media screen and (max-width: 495px) {
     width: 100%;
     padding: 0 16px;
   }
+`;
+
+export const ErrorMessage = styled.p`
+  padding: 40px;
+  font-weight: 500;
 `;
 
 export const hover01 = css`

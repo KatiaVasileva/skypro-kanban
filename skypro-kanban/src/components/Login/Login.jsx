@@ -2,8 +2,42 @@ import { AppRoutes } from "../../lib/appRoutes";
 import { ButtonEnter, ButtonEnterLink } from "../../styles/Button.styled";
 import * as S from "../../styles/Auth.styled";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { login, setToken } from "../../api";
+import { useNavigate } from "react-router-dom";
 
-function Login({ onClick }) {
+function Login({ setIsAuth }) {
+  const [formData, setFormData] = useState({
+    login: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleLoginButton = async () => {
+    try {
+      const user = await login({
+        login: formData.login,
+        password: formData.password,
+      });
+      setToken(user.user.token);
+
+      setIsAuth(true);
+      navigate(AppRoutes.MAIN);
+
+      setFormData({ login: "", password: "" });
+    } catch (error) {
+      setLoginError(error.message);
+    }
+  };
+
   return (
     <S.ContainerSignin>
       <S.Modal>
@@ -15,17 +49,22 @@ function Login({ onClick }) {
             <S.Input
               type="text"
               name="login"
+              value={formData.login}
+              onChange={handleInputChange}
               id="formlogin"
               placeholder="Эл. почта"
             />
             <S.Input
               type="password"
               name="password"
+              value={formData.password}
+              onChange={handleInputChange}
               id="formpassword"
               placeholder="Пароль"
             />
+            <S.ErrorMessage>{loginError}</S.ErrorMessage>
             <ButtonEnter id="btnEnter">
-              <ButtonEnterLink to={AppRoutes.MAIN} onClick={onClick}>
+              <ButtonEnterLink onClick={handleLoginButton}>
                 Войти
               </ButtonEnterLink>
             </ButtonEnter>
@@ -45,7 +84,7 @@ function Login({ onClick }) {
 }
 
 Login.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  setIsAuth: PropTypes.func.isRequired,
 };
 
 export default Login;

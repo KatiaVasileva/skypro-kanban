@@ -52,6 +52,16 @@ export const Title = styled.div`
   margin-bottom: 20px;
 `;
 
+export const ErrorMessage = styled.span`
+  font-family: "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -1%;
+  color: #F84D4D;
+  text-align: center;
+`;
+
 export const Input = styled.input`
   width: 100%;
   min-width: 100%;
@@ -82,6 +92,7 @@ export const InputForm = styled.form`
   justify-content: center;
 
   ${Input}
+  ${ErrorMessage}
 `;
 
 export const FormGroupRegisterText = styled.p`

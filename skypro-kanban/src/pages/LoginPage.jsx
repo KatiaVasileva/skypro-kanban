@@ -2,16 +2,16 @@ import Login from "../components/Login/Login";
 import { Wrapper } from "../styles/Common.styled";
 import PropTypes from "prop-types";
 
-export default function LoginPage({ onClick }) {
+export default function LoginPage({ setIsAuth }) {
   return (
     <>
       <Wrapper>
-        <Login onClick={onClick} />
+        <Login setIsAuth={setIsAuth} />
       </Wrapper>
     </>
   );
 }
 
 LoginPage.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  setIsAuth: PropTypes.func.isRequired,
 };

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import * as S from "./Main.styled";
 import { Container } from "../../styles/Common.styled";
 
-function Main({ cards }) {
+function Main({ tasks }) {
   return (
     <S.Main>
       <Container>
@@ -14,7 +14,7 @@ function Main({ cards }) {
               <Column
                 key={status}
                 columnTitle={status}
-                cards={cards.filter((card) => card.status === status)}
+                tasks={tasks.filter((task) => task.status === status)}
               />
             ))}
           </S.MainContent>
@@ -25,7 +25,7 @@ function Main({ cards }) {
 }
 
 Main.propTypes = {
-  cards: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired,
 };
 
 export default Main;

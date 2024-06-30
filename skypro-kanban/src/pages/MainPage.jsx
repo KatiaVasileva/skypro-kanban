@@ -1,26 +1,37 @@
 import { useState, useEffect } from "react";
-import { cardList } from "../lib/data";
-import { Wrapper } from "../styles/Common.styled";
+import { ErrorMessage, Wrapper } from "../styles/Common.styled";
 import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
+import { addTask, getTasks } from "../api";
+import { inputHandler } from "../lib/helpers";
 
 export default function MainPage() {
-  const [cards, setCards] = useState(cardList);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  const [getTasksError, setGetTasksError] = useState(false);
 
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      topic: "Web Design",
-      title: "Новая задача",
-      date: "08.06.2024",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
+  const newCard = {
+    title: " ",
+    topic: " ",
+    status: " ",
+    description: "Подробное описание задачи",
+    date: "",
+  };
+
+  const handleAddCardButton = async () => {
+    setGetTasksError(false);
+    const newTasks = await addTask({
+      title: inputHandler(newCard.title, "Новая задача"),
+      topic: inputHandler(newCard.topic, "Research"),
+      status: inputHandler(newCard.status, "Без статуса"),
+      description: inputHandler(newCard.description, " "),
+      date: inputHandler(newCard.date, Date.now()),
+    });
+    setTasks(newTasks.tasks);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,19 +39,38 @@ export default function MainPage() {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+    getTasks()
+      .then((tasks) => {
+        setIsLoading(false);
+        setTasks(tasks.tasks);
+      })
+      .catch(() => {
+        setGetTasksError("Не удалось загрузить данные, попробуйте позже.");
+      });
+  }, []);
+
   return (
     <>
       <Wrapper>
         <PopNewCard />
 
-        <Header onCardAdd={addCard} />
+        <Header onCardAdd={handleAddCardButton}></Header>
 
         {isLoading ? (
-          <Loader />
+          <>
+            <Loader />
+          </>
         ) : (
           <>
-            <Main cards={cards}></Main>
-            <Outlet />
+            {getTasksError && <ErrorMessage>{getTasksError}</ErrorMessage>}
+            {!getTasksError && (
+              <>
+                <Main tasks={tasks}></Main>
+                <Outlet />
+              </>
+            )}
           </>
         )}
       </Wrapper>
