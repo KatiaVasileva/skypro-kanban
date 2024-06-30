@@ -1,5 +1,10 @@
 const baseHost = "https://wedev-api.sky.pro/api";
-const token = "bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck";
+
+export let token;
+
+export const setToken = (newToken) => {
+    token = newToken;
+}
 
 // Авторизоваться
 export async function login({ login, password }) {
@@ -12,7 +17,7 @@ export async function login({ login, password }) {
   });
 
   if (response.status === 400) {
-    throw new Error("Неправильный логин или пароль");
+    throw new Error("Введенные вами данные не распознаны.Проверьте свой логин и пароль и повторите попытку входа.");
   }
 
   return response.json();
