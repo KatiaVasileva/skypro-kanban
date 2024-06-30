@@ -3,8 +3,8 @@ const baseHost = "https://wedev-api.sky.pro/api";
 export let token;
 
 export const setToken = (newToken) => {
-    token = newToken;
-}
+  token = newToken;
+};
 
 // Авторизоваться
 export async function login({ login, password }) {
@@ -17,7 +17,29 @@ export async function login({ login, password }) {
   });
 
   if (response.status === 400) {
-    throw new Error("Введенные вами данные не распознаны.Проверьте свой логин и пароль и повторите попытку входа.");
+    throw new Error(
+      "Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа."
+    );
+  }
+
+  return response.json();
+}
+
+// Зарегистрироваться
+export async function register({ login, name, password }) {
+  const response = await fetch(baseHost + "/user", {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      name,
+      password,
+    }),
+  });
+
+  if (response.status === 400) {
+    throw new Error(
+      "Введенные вами данные не корректны. Чтобы завершить регистрацию, введите данные корректно и повторите попытку."
+    );
   }
 
   return response.json();
@@ -64,5 +86,3 @@ export async function addTask({ title, topic, status, description, date }) {
 
   return response.json();
 }
-
-
