@@ -8,7 +8,11 @@ import {
 import * as S from "./PopExit.styled";
 import PropTypes from "prop-types";
 
-function PopExit({ onClick }) {
+function PopExit({ setIsAuth }) {
+  const handleExitButton = () => {
+    setIsAuth(false);
+  }
+
   return (
     <S.PopExit id="popExit">
       <S.PopExitContainer>
@@ -19,7 +23,7 @@ function PopExit({ onClick }) {
           <S.PopExitForm id="formExit" action="#">
             <S.PopExitFormGroup>
               <PopExitYesButton id="exitYes">
-                <ExitYes onClick={onClick}>Да, выйти</ExitYes>
+                <ExitYes onClick={handleExitButton}>Да, выйти</ExitYes>
               </PopExitYesButton>
               <PopExitNoButton id="exitNo">
                 <ExitNo to={AppRoutes.MAIN}>Нет, остаться</ExitNo>
@@ -33,7 +37,7 @@ function PopExit({ onClick }) {
 }
 
 PopExit.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  setIsAuth: PropTypes.func.isRequired,
 };
 
 export default PopExit;

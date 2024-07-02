@@ -3,15 +3,15 @@ import Card from "../Card/Card";
 import * as S from "./Column.styled";
 import { Cards } from "../Card/Card.styled";
 
-function Column({ columnTitle, cards }) {
+function Column({ columnTitle, tasks }) {
   return (
     <S.Column>
       <S.ColumnTitle>
         <S.ColumnTitleText>{columnTitle}</S.ColumnTitleText>
       </S.ColumnTitle>
       <Cards>
-        {cards.map((card) => (
-          <Card key={card.id} card={card} />
+        {tasks.map((task) => (
+          <Card key={task._id} task={task} />
         ))}
       </Cards>
     </S.Column>
@@ -20,7 +20,7 @@ function Column({ columnTitle, cards }) {
 
 Column.propTypes = {
   columnTitle: PropTypes.string.isRequired,
-  cards: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired,
 };
 
 export default Column;
