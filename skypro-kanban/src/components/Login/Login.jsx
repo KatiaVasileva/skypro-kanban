@@ -1,16 +1,18 @@
 import { AppRoutes } from "../../lib/appRoutes";
 import { ButtonEnter, ButtonEnterLink } from "../../styles/Button.styled";
 import * as S from "../../styles/Auth.styled";
-import PropTypes from "prop-types";
 import { useState } from "react";
-import { login, setToken } from "../../api";
+import { login } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../hooks/useUserContext";
 
-function Login({ setIsAuth }) {
+function Login() {
   const [formData, setFormData] = useState({
     login: "",
     password: "",
   });
+
+  const { updateUser } = useUserContext();
 
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(false);
@@ -23,13 +25,13 @@ function Login({ setIsAuth }) {
 
   const handleLoginButton = async () => {
     try {
-      const user = await login({
+      const newUser = await login({
         login: formData.login,
         password: formData.password,
       });
-      setToken(user.user.token);
 
-      setIsAuth(true);
+      updateUser(newUser.user);
+
       navigate(AppRoutes.MAIN);
 
       setFormData({ login: "", password: "" });
@@ -82,9 +84,5 @@ function Login({ setIsAuth }) {
     </S.ContainerSignin>
   );
 }
-
-Login.propTypes = {
-  setIsAuth: PropTypes.func.isRequired,
-};
 
 export default Login;

@@ -7,11 +7,13 @@ import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
 import { addTask, getTasks } from "../api";
 import { inputHandler } from "../lib/helpers";
+import { useUserContext } from "../hooks/useUserContext";
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(false);
+  const { user } = useUserContext();
 
   const newCard = {
     title: " ",
@@ -29,6 +31,7 @@ export default function MainPage() {
       status: inputHandler(newCard.status, "Без статуса"),
       description: inputHandler(newCard.description, " "),
       date: inputHandler(newCard.date, Date.now()),
+      token: user.token,
     });
     setTasks(newTasks.tasks);
   };
@@ -41,7 +44,7 @@ export default function MainPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    getTasks()
+    getTasks({ token: user.token })
       .then((tasks) => {
         setIsLoading(false);
         setTasks(tasks.tasks);
@@ -49,7 +52,7 @@ export default function MainPage() {
       .catch(() => {
         setGetTasksError("Не удалось загрузить данные, попробуйте позже.");
       });
-  }, []);
+  }, [user.token]);
 
   return (
     <>
