@@ -1,73 +1,67 @@
 import Calendar from "../../Calendar/Calender";
+import { AppRoutes } from "../../../lib/appRoutes";
+import * as S from "./PopNewCard.styled";
+import { CreateButton } from "../../../styles/Button.styled";
 
 function PopNewCard() {
   return (
-    <div className="pop-new-card" id="popNewCard">
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
-              &#10006;
-            </a>
-            <div className="pop-new-card__wrap">
-              <form
-                className="pop-new-card__form form-new"
-                id="formNewCard"
-                action="#"
-              >
-                <div className="form-new__block">
-                  <label htmlFor="formTitle" className="subttl">
-                    Название задачи
-                  </label>
-                  <input
-                    className="form-new__input"
+    <S.PopNewCard>
+      <S.Container>
+        <S.Block>
+          <S.Content>
+            <S.Title>Создание задачи</S.Title>
+            <S.WindowCloseLink to={AppRoutes.MAIN}>&#10006;</S.WindowCloseLink>
+            <S.Wrap>
+              <S.Form id="formNewCard" action="#">
+                <S.FormBlock>
+                  <S.Subtitle htmlFor="formTitle">Название задачи</S.Subtitle>
+                  <S.TaskNameInput
                     type="text"
                     name="name"
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
                   />
-                </div>
-                <div className="form-new__block">
-                  <label htmlFor="textArea" className="subttl">
-                    Описание задачи
-                  </label>
-                  <textarea
-                    className="form-new__area"
+                </S.FormBlock>
+                <S.FormBlock>
+                  <S.Subtitle htmlFor="textArea">Описание задачи</S.Subtitle>
+                  <S.TaskDescriptionInput
                     name="text"
                     id="textArea"
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
-
+                  ></S.TaskDescriptionInput>
+                </S.FormBlock>
+              </S.Form>
               <Calendar
                 dateEnd={"Выберите срок исполнения."}
                 dateControl={""}
               />
-            </div>
-            <div className="pop-new-card__categories categories">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-                <div className="categories__theme _green">
-                  <p className="_green">Research</p>
-                </div>
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div>
-              </div>
-            </div>
-            <button className="form-new__create _hover01" id="btnCreate">
-              Создать задачу
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </S.Wrap>
+            <S.Categories>
+              <S.CategoriesSubtitle>Категория</S.CategoriesSubtitle>
+              <S.CategoriesTheme>
+                <S.ActiveCategoriesTheme className="_orange">
+                  <S.CategoryThemeName className="_orange">
+                    Web Design
+                  </S.CategoryThemeName>
+                </S.ActiveCategoriesTheme>
+                <S.CategoryTheme className="_green">
+                  <S.CategoryThemeName className="_green">
+                    Research
+                  </S.CategoryThemeName>
+                </S.CategoryTheme>
+                <S.CategoryTheme className="_purple">
+                  <S.CategoryThemeName className="_purple">
+                    Copywriting
+                  </S.CategoryThemeName>
+                </S.CategoryTheme>
+              </S.CategoriesTheme>
+            </S.Categories>
+            <CreateButton id="btnCreate">Создать задачу</CreateButton>
+          </S.Content>
+        </S.Block>
+      </S.Container>
+    </S.PopNewCard>
   );
 }
 

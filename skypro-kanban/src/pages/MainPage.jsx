@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { ErrorMessage, Wrapper } from "../styles/Common.styled";
-import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
-import { addTask, getTasks } from "../api";
-import { inputHandler } from "../lib/helpers";
+import { getTasks } from "../api";
+// import { inputHandler } from "../lib/helpers";
 import { useUserContext } from "../hooks/useUserContext";
 
 export default function MainPage() {
@@ -15,26 +14,26 @@ export default function MainPage() {
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
 
-  const newCard = {
-    title: " ",
-    topic: " ",
-    status: " ",
-    description: "Подробное описание задачи",
-    date: "",
-  };
+  // const newCard = {
+  //   title: " ",
+  //   topic: " ",
+  //   status: " ",
+  //   description: "Подробное описание задачи",
+  //   date: "",
+  // };
 
-  const handleAddCardButton = async () => {
-    setGetTasksError(false);
-    const newTasks = await addTask({
-      title: inputHandler(newCard.title, "Новая задача"),
-      topic: inputHandler(newCard.topic, "Research"),
-      status: inputHandler(newCard.status, "Без статуса"),
-      description: inputHandler(newCard.description, " "),
-      date: inputHandler(newCard.date, Date.now()),
-      token: user.token,
-    });
-    setTasks(newTasks.tasks);
-  };
+  // const handleAddCardButton = async () => {
+  //   setGetTasksError(false);
+  //   const newTasks = await addTask({
+  //     title: inputHandler(newCard.title, "Новая задача"),
+  //     topic: inputHandler(newCard.topic, "Research"),
+  //     status: inputHandler(newCard.status, "Без статуса"),
+  //     description: inputHandler(newCard.description, " "),
+  //     date: inputHandler(newCard.date, Date.now()),
+  //     token: user.token,
+  //   });
+  //   setTasks(newTasks.tasks);
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,9 +56,8 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-        <PopNewCard />
 
-        <Header onCardAdd={handleAddCardButton}></Header>
+        <Header ></Header>
 
         {isLoading ? (
           <>

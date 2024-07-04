@@ -70,10 +70,6 @@ export const Input = styled.input`
   outline: none;
   padding: 10px 8px;
 
-  &:first-child {
-    margin-bottom: 7px;
-  }
-
   &::placeholder {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -90,6 +86,7 @@ export const InputForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 7px;
 
   ${Input}
   ${ErrorMessage}

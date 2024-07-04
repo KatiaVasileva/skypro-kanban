@@ -20,6 +20,10 @@ export const HeaderButton = styled(Button)`
   font-weight: 500;
   margin-right: 20px;
 
+  a {
+    color: #ffffff;
+  }
+
   ${hover01}
 
   @media screen and (max-width: ${breakpoints.md + "px"}) {
@@ -183,6 +187,27 @@ export const ButtonEnter = styled(LoginButton)`
   ${hover01}
 
   @media screen and (max-width: ${breakpoints.sm + "px"}) {
+    height: 40px;
+  }
+`;
+
+export const CreateButton = styled(Button)`
+  width: 132px;
+  height: 30px;
+  background-color: #565eef;
+  border-radius: 4px;
+  border: 0;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+  float: right;
+
+  ${hover01}
+
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
+    width: 100%;
     height: 40px;
   }
 `;

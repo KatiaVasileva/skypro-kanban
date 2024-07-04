@@ -1,12 +1,15 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import * as S from "./Header.styled";
 import PopUser from "../popups/PopUser/PopUser";
 import { HeaderButton } from "../../styles/Button.styled.js";
 import { Container } from "../../styles/Common.styled.js";
+import { useUserContext } from "../../hooks/useUserContext.js";
+import { AppRoutes } from "../../lib/appRoutes.js";
 
-function Header({ onCardAdd }) {
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUserContext();
 
   const toggleWindow = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -27,10 +30,11 @@ function Header({ onCardAdd }) {
             </a>
           </S.LogoDark>
           <S.Nav>
-            <HeaderButton id="btnMainNew" onClick={onCardAdd}>
-              Создать новую задачу
+            <HeaderButton id="btnMainNew">
+              <S.HeaderLink to={AppRoutes.NEW_CARD}>Создать новую задачу</S.HeaderLink>
+              {/* Создать новую задачу */}
             </HeaderButton>
-            <S.HeaderUser onClick={toggleWindow}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={toggleWindow}>{user.name}</S.HeaderUser>
             {isOpen && <PopUser />}
           </S.Nav>
         </S.HeaderBlock>
@@ -39,8 +43,8 @@ function Header({ onCardAdd }) {
   );
 }
 
-Header.propTypes = {
-  onCardAdd: PropTypes.func.isRequired,
-};
+// Header.propTypes = {
+//   onCardAdd: PropTypes.func.isRequired,
+// };
 
 export default Header;
