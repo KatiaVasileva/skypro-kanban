@@ -2,6 +2,7 @@ import Calendar from "../../Calendar/Calender";
 import { AppRoutes } from "../../../lib/appRoutes";
 import * as S from "./PopNewCard.styled";
 import { CreateButton } from "../../../styles/Button.styled";
+import { colors } from "../../../lib/topicStyles";
 
 function PopNewCard() {
   return (
@@ -40,20 +41,14 @@ function PopNewCard() {
             <S.Categories>
               <S.CategoriesSubtitle>Категория</S.CategoriesSubtitle>
               <S.CategoriesTheme>
-                <S.ActiveCategoriesTheme className="_orange">
-                  <S.CategoryThemeName className="_orange">
-                    Web Design
-                  </S.CategoryThemeName>
+                <S.ActiveCategoriesTheme $themeColor={colors.get("Web Design")}>
+                  <S.CategoryThemeName>Web Design</S.CategoryThemeName>
                 </S.ActiveCategoriesTheme>
-                <S.CategoryTheme className="_green">
-                  <S.CategoryThemeName className="_green">
-                    Research
-                  </S.CategoryThemeName>
+                <S.CategoryTheme $themeColor={colors.get("Research")}>
+                  <S.CategoryThemeName>Research</S.CategoryThemeName>
                 </S.CategoryTheme>
-                <S.CategoryTheme className="_purple">
-                  <S.CategoryThemeName className="_purple">
-                    Copywriting
-                  </S.CategoryThemeName>
+                <S.CategoryTheme $themeColor={colors.get("Copywriting")}>
+                  <S.CategoryThemeName>Copywriting</S.CategoryThemeName>
                 </S.CategoryTheme>
               </S.CategoriesTheme>
             </S.Categories>

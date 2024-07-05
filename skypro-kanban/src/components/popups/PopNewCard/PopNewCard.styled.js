@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css }  from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { Link } from "react-router-dom";
+import { topicStyles } from "../../../lib/topicStyles";
 
 export const PopNewCard = styled.div`
   display: block;
@@ -121,7 +122,7 @@ export const FormBlock = styled.div`
 
 export const Subtitle = styled.label``;
 
-export const Input = styled.css`
+export const Input = css`
   width: 100%;
   outline: none;
   padding: 14px;
@@ -190,8 +191,12 @@ export const CategoryTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+  background-color: ${({ $themeColor }) =>
+    topicStyles[$themeColor]?.backgroundColor || "#94A6BE"};
 
-  ${CategoryThemeName}
+  ${CategoryThemeName} {
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
+  }
 `;
 
 export const ActiveCategoriesTheme = styled(CategoryTheme)`
