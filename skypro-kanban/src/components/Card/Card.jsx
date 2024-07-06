@@ -3,6 +3,7 @@ import * as S from "./Card.styled";
 import { colors } from "../../lib/topicStyles.js";
 import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 function Card({ task }) {
   return (
@@ -53,7 +54,7 @@ function Card({ task }) {
                 </clipPath>
               </defs>
             </S.DateImage>
-            <S.Date>{task.date}</S.Date>
+            <S.Date>{format(task.date, "dd.MM.yy")}</S.Date>
           </S.CardDate>
         </S.CardContent>
       </S.Card>
