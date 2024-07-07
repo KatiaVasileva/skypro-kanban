@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { topicStyles } from "../../../lib/topicStyles";
+// import { Subtitle } from "../PopNewCard/PopNewCard.styled";
 
 export const PopBrowse = styled.div`
   display: block;
@@ -63,7 +64,6 @@ export const CategoryThemeName = styled.p`
 `;
 
 export const CategoryTheme = styled.div`
-  display: inline-block;
   width: 115px;
   height: 30px;
   padding: 8px 20px;
@@ -76,6 +76,14 @@ export const CategoryTheme = styled.div`
 
   ${CategoryThemeName} {
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
+  }
+`;
+
+export const CategoryThemeTop = styled(CategoryTheme)`
+  display: block;
+
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
+    display: none;
   }
 `;
 
@@ -138,6 +146,10 @@ export const StatusTheme = styled.div`
   margin-bottom: 7px;
 
   ${StatusThemeText}
+`;
+
+export const StatusThemeHide = styled(StatusTheme)`
+  display: none;
 `;
 
 export const StatusThemeGray = styled(StatusTheme)`
@@ -211,4 +223,20 @@ export const FormTextarea = styled.textarea`
   }
 `;
 
+export const ThemeDown = styled.div`
+  display: none;
+  margin-bottom: 20px;
 
+  @media screen and (max-width: ${breakpoints.md}) {
+    display: block;
+    margin-bottom: 20px;
+  }
+`;
+
+export const CategorySubtitle = styled.p`
+  margin-bottom: 14px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;

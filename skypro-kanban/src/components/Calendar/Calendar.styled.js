@@ -4,6 +4,10 @@ import { breakpoints } from "../../lib/breakpoints";
 export const Calendar = styled.div`
   width: 182px;
   margin-bottom: 20px;
+
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
+    width: 100%;
+  }
 `;
 
 export const CalendarTitle = styled.p`
@@ -159,10 +163,20 @@ export const CalendarPeriodDate = styled.p`
   font-size: 10px;
   line-height: 1;
 
+  p {
+    color: #94a6be;
+    font-size: 10px;
+    line-height: 1;
+  }
+
   span {
     color: #000000;
   }
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     font-size: 14px;
+
+    p {
+      font-size: 14px;
+    }
   }
 `;

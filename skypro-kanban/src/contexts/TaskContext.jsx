@@ -1,10 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { getTasksFromLocalStorage, savesTasksToLocalStorage } from "../lib/helpers";
 
 export const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getTasksFromLocalStorage);
+
+  useEffect(() => {
+    savesTasksToLocalStorage(tasks);
+  });
 
   return (
     <TaskContext.Provider value={{ tasks, setTasks }}>

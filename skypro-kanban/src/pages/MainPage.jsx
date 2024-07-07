@@ -5,37 +5,14 @@ import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../api";
-// import { inputHandler } from "../lib/helpers";
 import { useUserContext } from "../hooks/useUserContext";
 import { useTaskContext } from "../hooks/useTaskContext";
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
-  // const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
   const {tasks, setTasks} = useTaskContext();
-
-  // const newCard = {
-  //   title: " ",
-  //   topic: " ",
-  //   status: " ",
-  //   description: "Подробное описание задачи",
-  //   date: "",
-  // };
-
-  // const handleAddCardButton = async () => {
-  //   setGetTasksError(false);
-  //   const newTasks = await addTask({
-  //     title: inputHandler(newCard.title, "Новая задача"),
-  //     topic: inputHandler(newCard.topic, "Research"),
-  //     status: inputHandler(newCard.status, "Без статуса"),
-  //     description: inputHandler(newCard.description, " "),
-  //     date: inputHandler(newCard.date, Date.now()),
-  //     token: user.token,
-  //   });
-  //   setTasks(newTasks.tasks);
-  // };
 
   useEffect(() => {
     setTimeout(() => {

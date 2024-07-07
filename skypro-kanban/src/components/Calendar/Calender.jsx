@@ -7,11 +7,12 @@ function Calendar({ dateEnd, dateControl }) {
     <S.Calendar>
       <S.CalendarTitle>Даты</S.CalendarTitle>
       <S.CalendarBlock>
-        <CalendarDayPicker/>
+        <CalendarDayPicker />
         <input type="hidden" id="datepick_value" value="08.09.2023" />
         <S.CalendarPeriod>
           <S.CalendarPeriodDate>
-            {dateEnd} <span>{dateControl}</span>
+            <p>{dateEnd}</p>
+            <span>{dateControl}</span>
           </S.CalendarPeriodDate>
         </S.CalendarPeriod>
       </S.CalendarBlock>

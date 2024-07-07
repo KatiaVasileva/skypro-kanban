@@ -5,15 +5,19 @@ import { AppRoutes } from "../../../lib/appRoutes";
 import { useTaskContext } from "../../../hooks/useTaskContext";
 import * as S from "./PopBrowse.styled";
 import { colors } from "../../../lib/topicStyles";
-import { BrowseFormButtonBg, BrowseFormButtonBor, ButtonBrowse, ButtonBrowseGroup, ButtonBrowseHide } from "../../../styles/Button.styled";
+import {
+  BrowseFormButtonBg,
+  BrowseFormButtonBor,
+  ButtonBrowse,
+  ButtonBrowseGroup,
+  ButtonBrowseHide,
+} from "../../../styles/Button.styled";
 import { format } from "date-fns";
 
 function PopBrowse({ cardId }) {
   const { tasks } = useTaskContext();
 
   const task = tasks.filter((task) => task._id === cardId);
-
-  console.log(task[0].topic);
 
   return (
     <S.PopBrowse id="popBrowse">
@@ -22,39 +26,36 @@ function PopBrowse({ cardId }) {
           <S.Content>
             <S.TopBlock>
               <S.Title>{task[0].title}</S.Title>
-              <S.CategoryTheme $themeColor={colors.get(task[0].topic)} className="theme-top _orange">
+              <S.CategoryThemeTop
+                $themeColor={colors.get(task[0].topic)}
+              >
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
-              </S.CategoryTheme>
+              </S.CategoryThemeTop>
             </S.TopBlock>
-            <S.Status >
-              <S.Id>
-                {"Идентификационный номер задачи: " + cardId}
-              </S.Id>
+            <S.Status>
+              <S.Id>{"Идентификационный номер задачи: " + cardId}</S.Id>
               <br />
               <S.StatusTitle>Статус</S.StatusTitle>
               <S.StatusThemes>
-                <S.StatusTheme className="_hide">
+                <S.StatusThemeHide>
                   <S.StatusThemeText>Без статуса</S.StatusThemeText>
-                </S.StatusTheme>
+                </S.StatusThemeHide>
                 <S.StatusThemeGray>
                   <S.StatusThemeTextGray>Нужно сделать</S.StatusThemeTextGray>
                 </S.StatusThemeGray>
-                <S.StatusTheme className="_hide">
+                <S.StatusThemeHide>
                   <S.StatusThemeText>В работе</S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme className="_hide">
+                </S.StatusThemeHide>
+                <S.StatusThemeHide>
                   <S.StatusThemeText>Тестирование</S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme className="_hide">
+                </S.StatusThemeHide>
+                <S.StatusThemeHide>
                   <S.StatusThemeText>Готово</S.StatusThemeText>
-                </S.StatusTheme>
+                </S.StatusThemeHide>
               </S.StatusThemes>
             </S.Status>
             <S.Wrap>
-              <S.Form
-                id="formBrowseCard"
-                action="#"
-              >
+              <S.Form id="formBrowseCard" action="#">
                 <S.FormBlock>
                   <S.FormBlockTitle htmlFor="textArea01">
                     Описание задачи
@@ -74,7 +75,14 @@ function PopBrowse({ cardId }) {
                 dateControl={format(task[0].date, "dd.MM.yy")}
               />
             </S.Wrap>
-
+            <S.ThemeDown>
+              <S.CategorySubtitle>Категория</S.CategorySubtitle>
+              <S.CategoryTheme
+                $themeColor={colors.get(task[0].topic)}
+              >
+                <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
+              </S.CategoryTheme>
+            </S.ThemeDown>
             <ButtonBrowse>
               <ButtonBrowseGroup>
                 <BrowseFormButtonBor>
@@ -96,9 +104,7 @@ function PopBrowse({ cardId }) {
                 <BrowseFormButtonBor>
                   <a href="#">Отменить</a>
                 </BrowseFormButtonBor>
-                <BrowseFormButtonBor
-                  id="btnDelete"
-                >
+                <BrowseFormButtonBor id="btnDelete">
                   <a href="#">Удалить задачу</a>
                 </BrowseFormButtonBor>
               </ButtonBrowseGroup>

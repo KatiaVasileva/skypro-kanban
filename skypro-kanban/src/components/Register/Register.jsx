@@ -4,6 +4,7 @@ import * as S from "../../styles/Auth.styled";
 import { ButtonEnter, ButtonEnterLink } from "../../styles/Button.styled";
 import { register } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { sanitize } from "../../lib/helpers";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -23,8 +24,8 @@ function Register() {
   const handleRegisterButton = async () => {
     try{
       await register({
-        login: formData.login,
-        name: formData.name,
+        login: sanitize(formData.login),
+        name: sanitize(formData.name),
         password: formData.password,
       });
   

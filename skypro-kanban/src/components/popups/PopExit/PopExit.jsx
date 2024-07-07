@@ -1,4 +1,5 @@
 import { useUserContext } from "../../../hooks/useUserContext";
+import { useTaskContext } from "../../../hooks/useTaskContext";
 import { AppRoutes } from "../../../lib/appRoutes";
 import {
   PopExitYesButton,
@@ -7,11 +8,14 @@ import {
   ExitNo,
 } from "../../../styles/Button.styled";
 import * as S from "./PopExit.styled";
+import { removeTasksFromLocalStorage } from "../../../lib/helpers";
 
 function PopExit() {
   const { updateUser } = useUserContext();
+  const { tasks } = useTaskContext();
 
   const handleExitButton = () => {
+    removeTasksFromLocalStorage(tasks);
     updateUser(null);
   };
 
