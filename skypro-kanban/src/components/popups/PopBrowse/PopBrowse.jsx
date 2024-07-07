@@ -2,114 +2,119 @@ import { Link } from "react-router-dom";
 import Calendar from "../../Calendar/Calender";
 import PropTypes from "prop-types";
 import { AppRoutes } from "../../../lib/appRoutes";
+import { useTaskContext } from "../../../hooks/useTaskContext";
+import * as S from "./PopBrowse.styled";
+import { colors } from "../../../lib/topicStyles";
+import { BrowseFormButtonBg, BrowseFormButtonBor, ButtonBrowse, ButtonBrowseGroup, ButtonBrowseHide } from "../../../styles/Button.styled";
+import { format } from "date-fns";
 
 function PopBrowse({ cardId }) {
+  const { tasks } = useTaskContext();
+
+  const task = tasks.filter((task) => task._id === cardId);
+
+  console.log(task[0].topic);
+
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="pop-browse__id">{"Идентификационный номер задачи: " + cardId}</p>
+    <S.PopBrowse id="popBrowse">
+      <S.Container>
+        <S.Block>
+          <S.Content>
+            <S.TopBlock>
+              <S.Title>{task[0].title}</S.Title>
+              <S.CategoryTheme $themeColor={colors.get(task[0].topic)} className="theme-top _orange">
+                <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
+              </S.CategoryTheme>
+            </S.TopBlock>
+            <S.Status >
+              <S.Id>
+                {"Идентификационный номер задачи: " + cardId}
+              </S.Id>
               <br />
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+              <S.StatusTitle>Статус</S.StatusTitle>
+              <S.StatusThemes>
+                <S.StatusTheme className="_hide">
+                  <S.StatusThemeText>Без статуса</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusThemeGray>
+                  <S.StatusThemeTextGray>Нужно сделать</S.StatusThemeTextGray>
+                </S.StatusThemeGray>
+                <S.StatusTheme className="_hide">
+                  <S.StatusThemeText>В работе</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme className="_hide">
+                  <S.StatusThemeText>Тестирование</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme className="_hide">
+                  <S.StatusThemeText>Готово</S.StatusThemeText>
+                </S.StatusTheme>
+              </S.StatusThemes>
+            </S.Status>
+            <S.Wrap>
+              <S.Form
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <S.FormBlock>
+                  <S.FormBlockTitle htmlFor="textArea01">
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </S.FormBlockTitle>
+                  <S.FormTextarea
                     name="text"
+                    value={task[0].description}
                     id="textArea01"
                     readOnly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></S.FormTextarea>
+                </S.FormBlock>
+              </S.Form>
 
               <Calendar
                 dateEnd={"Срок исполнения: "}
-                dateControl={"09.09.23"}
+                dateControl={format(task[0].date, "dd.MM.yy")}
               />
-            </div>
+            </S.Wrap>
 
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
+            <ButtonBrowse>
+              <ButtonBrowseGroup>
+                <BrowseFormButtonBor>
                   <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
+                </BrowseFormButtonBor>
+                <BrowseFormButtonBor>
                   <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
+                </BrowseFormButtonBor>
+              </ButtonBrowseGroup>
+              <BrowseFormButtonBg>
                 <Link to={AppRoutes.MAIN}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
+              </BrowseFormButtonBg>
+            </ButtonBrowse>
+            <ButtonBrowseHide className="_hide">
+              <ButtonBrowseGroup>
+                <BrowseFormButtonBg>
                   <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
+                </BrowseFormButtonBg>
+                <BrowseFormButtonBor>
                   <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
+                </BrowseFormButtonBor>
+                <BrowseFormButtonBor
                   id="btnDelete"
                 >
                   <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
+                </BrowseFormButtonBor>
+              </ButtonBrowseGroup>
+              <BrowseFormButtonBg>
                 <a href="#">Закрыть</a>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </BrowseFormButtonBg>
+            </ButtonBrowseHide>
+          </S.Content>
+        </S.Block>
+      </S.Container>
+    </S.PopBrowse>
   );
 }
 
 PopBrowse.propTypes = {
-  cardId: PropTypes.string.isRequired
-}
+  cardId: PropTypes.string.isRequired,
+};
 
 export default PopBrowse;

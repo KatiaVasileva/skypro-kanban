@@ -185,7 +185,7 @@ export const CategoryThemeName = styled.p`
 
 export const CategoryTheme = styled.div`
   display: inline-block;
-  width: auto;
+  width: 115px;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
@@ -199,6 +199,6 @@ export const CategoryTheme = styled.div`
   }
 `;
 
-export const ActiveCategoriesTheme = styled(CategoryTheme)`
+export const ActiveCategoryTheme = styled(CategoryTheme)`
   opacity: 1 !important;
 `;

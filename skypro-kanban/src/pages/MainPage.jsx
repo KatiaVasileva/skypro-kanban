@@ -7,12 +7,14 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../api";
 // import { inputHandler } from "../lib/helpers";
 import { useUserContext } from "../hooks/useUserContext";
+import { useTaskContext } from "../hooks/useTaskContext";
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
+  const {tasks, setTasks} = useTaskContext();
 
   // const newCard = {
   //   title: " ",
@@ -51,7 +53,7 @@ export default function MainPage() {
       .catch(() => {
         setGetTasksError("Не удалось загрузить данные, попробуйте позже.");
       });
-  }, [user.token]);
+  }, [user.token, setTasks]);
 
   return (
     <>
