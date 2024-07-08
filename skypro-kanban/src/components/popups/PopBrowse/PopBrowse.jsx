@@ -61,7 +61,7 @@ function PopBrowse({ cardId }) {
                     Описание задачи
                   </S.FormBlockTitle>
                   <S.FormTextarea
-                    name="text"
+                    name="description"
                     value={task[0].description}
                     id="textArea01"
                     readOnly

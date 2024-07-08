@@ -18,12 +18,15 @@ export function removeUserFromLocalStorage() {
     window.localStorage.removeItem("user");
 }
 
-export function savesTasksToLocalStorage(tasks) {
+export function saveTasksToLocalStorage(tasks) {
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 export function getTasksFromLocalStorage() {
     try {
+        if(!window.localStorage.getItem("tasks")) {
+            return [];
+        }
         return JSON.parse(window.localStorage.getItem("tasks"));
     } catch (error) {
         return error.message;

@@ -31,13 +31,6 @@ export const ErrorMessage = styled.p`
   font-weight: 500;
 `;
 
-// export const Subtitle = css`
-//   color: #000;
-//   font-size: 14px;
-//   font-weight: 600;
-//   line-height: 1;
-// `;
-
 export const hover01 = css`
   &:hover {
     background-color: #33399b;

@@ -12,7 +12,7 @@ export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
-  const {tasks, setTasks} = useTaskContext();
+  const {setTasks} = useTaskContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +47,7 @@ export default function MainPage() {
             {getTasksError && <ErrorMessage>{getTasksError}</ErrorMessage>}
             {!getTasksError && (
               <>
-                <Main tasks={tasks}></Main>
+                <Main></Main>
                 <Outlet />
               </>
             )}

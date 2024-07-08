@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import PropTypes from "prop-types";
 import * as S from "./Header.styled";
 import PopUser from "../popups/PopUser/PopUser";
 import { HeaderButton } from "../../styles/Button.styled.js";
@@ -42,9 +41,5 @@ function Header() {
     </S.Header>
   );
 }
-
-// Header.propTypes = {
-//   onCardAdd: PropTypes.func.isRequired,
-// };
 
 export default Header;

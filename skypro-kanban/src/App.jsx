@@ -1,4 +1,3 @@
-import "./App.css";
 import Routing from "./components/Routing/Routing";
 import TaskProvider from "./contexts/TaskContext";
 import UserProvider from "./contexts/UserContext";

@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { getTasksFromLocalStorage, savesTasksToLocalStorage } from "../lib/helpers";
+import {
+  getTasksFromLocalStorage,
+  saveTasksToLocalStorage,
+} from "../lib/helpers";
 
 export const TaskContext = createContext();
 
@@ -8,8 +11,8 @@ const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState(getTasksFromLocalStorage);
 
   useEffect(() => {
-    savesTasksToLocalStorage(tasks);
-  });
+    saveTasksToLocalStorage(tasks);
+  }), [tasks];
 
   return (
     <TaskContext.Provider value={{ tasks, setTasks }}>
@@ -19,7 +22,7 @@ const TaskProvider = ({ children }) => {
 };
 
 TaskProvider.propTypes = {
-    children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
 export default TaskProvider;

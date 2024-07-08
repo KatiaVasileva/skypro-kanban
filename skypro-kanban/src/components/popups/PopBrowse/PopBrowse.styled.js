@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { topicStyles } from "../../../lib/topicStyles";
-// import { Subtitle } from "../PopNewCard/PopNewCard.styled";
 
 export const PopBrowse = styled.div`
   display: block;
@@ -193,7 +192,6 @@ export const FormBlockTitle = styled.label`
 `;
 
 export const FormTextarea = styled.textarea`
-  max-width: 370px;
   width: 100%;
   outline: none;
   padding: 14px;
@@ -205,6 +203,7 @@ export const FormTextarea = styled.textarea`
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.14px;
+  max-width: 370px;
   margin-top: 14px;
   height: 200px;
 
@@ -217,9 +216,9 @@ export const FormTextarea = styled.textarea`
     letter-spacing: -0.14px;
   }
 
-  @media screen and (max-width: ${breakpoints.md}) {
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
     max-width: 100%;
-    height: 37px;
+    height: 34px;
   }
 `;
 

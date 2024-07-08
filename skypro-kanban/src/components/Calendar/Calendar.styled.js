@@ -162,6 +162,7 @@ export const CalendarPeriodDate = styled.p`
   color: #94a6be;
   font-size: 10px;
   line-height: 1;
+  margin-top: 14px;
 
   span {
     color: #000000;

@@ -120,7 +120,12 @@ export const FormBlock = styled.div`
   flex-direction: column;
 `;
 
-export const Subtitle = styled.label``;
+export const Subtitle = styled.label`
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;
 
 export const Input = css`
   width: 100%;
@@ -151,6 +156,7 @@ export const TaskNameInput = styled.input`
 
 export const TaskDescriptionInput = styled.textarea`
   ${Input}
+  font-family: "Roboto", sans-serif;
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
@@ -166,6 +172,10 @@ export const Categories = styled.div`
 `;
 
 export const CategoriesSubtitle = styled.p`
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
   margin-bottom: 14px;
 `;
 

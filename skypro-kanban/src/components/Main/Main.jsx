@@ -3,8 +3,11 @@ import Column from "../Column/Column";
 import PropTypes from "prop-types";
 import * as S from "./Main.styled";
 import { Container } from "../../styles/Common.styled";
+import { useTaskContext } from "../../hooks/useTaskContext";
 
-function Main({ tasks }) {
+function Main() {
+  const {tasks} = useTaskContext();
+
   return (
     <S.Main>
       <Container>
@@ -25,7 +28,7 @@ function Main({ tasks }) {
 }
 
 Main.propTypes = {
-  tasks: PropTypes.array.isRequired,
+  tasks: PropTypes.any,
 };
 
 export default Main;
