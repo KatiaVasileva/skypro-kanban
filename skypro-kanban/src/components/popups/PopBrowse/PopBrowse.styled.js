@@ -227,7 +227,7 @@ export const ThemeDown = styled.div`
   display: none;
   margin-bottom: 20px;
 
-  @media screen and (max-width: ${breakpoints.md}) {
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
     display: block;
     margin-bottom: 20px;
   }

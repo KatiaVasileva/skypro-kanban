@@ -75,6 +75,7 @@ function PopBrowse({ cardId }) {
                 dateControl={format(task[0].date, "dd.MM.yy")}
               />
             </S.Wrap>
+
             <S.ThemeDown>
               <S.CategorySubtitle>Категория</S.CategorySubtitle>
               <S.CategoryTheme
@@ -83,6 +84,7 @@ function PopBrowse({ cardId }) {
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
               </S.CategoryTheme>
             </S.ThemeDown>
+            
             <ButtonBrowse>
               <ButtonBrowseGroup>
                 <BrowseFormButtonBor>

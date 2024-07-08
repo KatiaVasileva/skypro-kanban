@@ -11,7 +11,7 @@ function Calendar({ dateEnd, dateControl }) {
         <input type="hidden" id="datepick_value" value="08.09.2023" />
         <S.CalendarPeriod>
           <S.CalendarPeriodDate>
-            <p>{dateEnd}</p>
+            {dateEnd}
             <span>{dateControl}</span>
           </S.CalendarPeriodDate>
         </S.CalendarPeriod>

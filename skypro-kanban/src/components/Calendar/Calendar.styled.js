@@ -163,20 +163,10 @@ export const CalendarPeriodDate = styled.p`
   font-size: 10px;
   line-height: 1;
 
-  p {
-    color: #94a6be;
-    font-size: 10px;
-    line-height: 1;
-  }
-
   span {
     color: #000000;
   }
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     font-size: 14px;
-
-    p {
-      font-size: 14px;
-    }
   }
 `;
