@@ -1,6 +1,5 @@
 export function inputHandler(value, defaultValue) {
-    const sanitizedValue = sanitize(value);
-    return sanitizedValue.trim() === "" ? defaultValue : value;
+    return value === "" ? defaultValue : value;
 }
 
 export function saveUserToLocalStorage(user) {
@@ -33,8 +32,4 @@ export function getTasksFromLocalStorage() {
 
 export function removeTasksFromLocalStorage() {
     window.localStorage.removeItem("tasks");
-}
-
-export function sanitize(text) {
-    return text.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }

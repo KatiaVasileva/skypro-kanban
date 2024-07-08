@@ -1,4 +1,4 @@
-import styled, { css }  from "styled-components";
+import styled, { css } from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { Link } from "react-router-dom";
 import { topicStyles } from "../../../lib/topicStyles";
@@ -191,6 +191,8 @@ export const CategoryTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+  cursor: pointer;
+  text-align: center;
   background-color: ${({ $themeColor }) =>
     topicStyles[$themeColor]?.backgroundColor || "#94A6BE"};
 
