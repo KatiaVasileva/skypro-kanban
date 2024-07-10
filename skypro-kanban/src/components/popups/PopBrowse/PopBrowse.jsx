@@ -16,12 +16,29 @@ import { removeTask } from "../../../api";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { useState } from "react";
 
+function Status({ isStatusActive, statusTheme, onClick }) {
+  return (
+    <>
+      {isStatusActive ? (
+        <S.StatusThemeGray onClick={onClick}>
+          <S.StatusThemeTextGray>{statusTheme}</S.StatusThemeTextGray>
+        </S.StatusThemeGray>
+      ) : (
+        <S.StatusTheme onClick={onClick}>
+          <S.StatusThemeText>{statusTheme}</S.StatusThemeText>
+        </S.StatusTheme>
+      )}
+    </>
+  );
+}
+
 function PopBrowse({ cardId }) {
   const { user } = useUserContext();
   const { tasks, setTasks } = useTaskContext();
   const navigate = useNavigate();
   const [isEditActive, setIsEditActive] = useState(false);
   const [isReadonly, setIsReadonly] = useState(true);
+  const [statusIndex, setStatusIndex] = useState(0);
 
   const task = tasks.filter((task) => task._id === cardId);
 
@@ -47,10 +64,8 @@ function PopBrowse({ cardId }) {
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
               </S.CategoryThemeTop>
             </S.TopBlock>
+            
             <S.Status>
-              <S.Id>{"Идентификационный номер задачи: " + cardId}</S.Id>
-              <br />
-
               <S.StatusTitle>Статус</S.StatusTitle>
               {!isEditActive && (
                 <S.StatusThemes>
@@ -61,21 +76,41 @@ function PopBrowse({ cardId }) {
               )}
               {isEditActive && (
                 <S.StatusThemes>
-                  <S.StatusTheme>
-                    <S.StatusThemeText>Без статуса</S.StatusThemeText>
-                  </S.StatusTheme>
-                  <S.StatusTheme>
-                    <S.StatusThemeText>Нужно сделать</S.StatusThemeText>
-                  </S.StatusTheme>
-                  <S.StatusTheme>
-                    <S.StatusThemeText>В работе</S.StatusThemeText>
-                  </S.StatusTheme>
-                  <S.StatusTheme>
-                    <S.StatusThemeText>Тестирование</S.StatusThemeText>
-                  </S.StatusTheme>
-                  <S.StatusTheme>
-                    <S.StatusThemeText>Готово</S.StatusThemeText>
-                  </S.StatusTheme>
+                  <Status
+                    isStatusActive={statusIndex === 0}
+                    statusTheme="Без статуса"
+                    onClick={() => {
+                      setStatusIndex(0);
+                    }}
+                  />
+                  <Status
+                    isStatusActive={statusIndex === 1}
+                    statusTheme="Нужно сделать"
+                    onClick={() => {
+                      setStatusIndex(1);
+                    }}
+                  />
+                  <Status
+                    isStatusActive={statusIndex === 2}
+                    statusTheme="В работе"
+                    onClick={() => {
+                      setStatusIndex(2);
+                    }}
+                  />
+                  <Status
+                    isStatusActive={statusIndex === 3}
+                    statusTheme="Тестирование"
+                    onClick={() => {
+                      setStatusIndex(3);
+                    }}
+                  />
+                  <Status
+                    isStatusActive={statusIndex === 4}
+                    statusTheme="Готово"
+                    onClick={() => {
+                      setStatusIndex(4);
+                    }}
+                  />
                 </S.StatusThemes>
               )}
             </S.Status>
@@ -149,6 +184,12 @@ function PopBrowse({ cardId }) {
     </S.PopBrowse>
   );
 }
+
+Status.propTypes = {
+  isStatusActive: PropTypes.bool.isRequired,
+  statusTheme: PropTypes.string.isRequired,
+  onClick: PropTypes.func
+};
 
 PopBrowse.propTypes = {
   cardId: PropTypes.string.isRequired,

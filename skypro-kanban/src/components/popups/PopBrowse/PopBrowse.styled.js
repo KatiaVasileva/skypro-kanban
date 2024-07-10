@@ -128,6 +128,7 @@ export const StatusThemes = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+  cursor: pointer;
 `;
 
 export const StatusThemeText = styled.p`
