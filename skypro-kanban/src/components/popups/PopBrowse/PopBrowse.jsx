@@ -10,24 +10,29 @@ import {
   BrowseFormButtonBor,
   ButtonBrowse,
   ButtonBrowseGroup,
-  ButtonBrowseHide,
 } from "../../../styles/Button.styled";
 import { format } from "date-fns";
 import { removeTask } from "../../../api";
 import { useUserContext } from "../../../hooks/useUserContext";
+import { useState } from "react";
 
 function PopBrowse({ cardId }) {
-  const {user} = useUserContext();
+  const { user } = useUserContext();
   const { tasks, setTasks } = useTaskContext();
   const navigate = useNavigate();
+  const [isEditActive, setIsEditActive] = useState(false);
 
   const task = tasks.filter((task) => task._id === cardId);
 
+  const handleEditButton = () => {
+    setIsEditActive(true);
+  };
+
   const handleDeleteButton = async () => {
-    const newTasks = await removeTask({id: cardId, token: user.token});
+    const newTasks = await removeTask({ id: cardId, token: user.token });
     setTasks(newTasks.tasks);
     navigate(AppRoutes.MAIN);
-  }
+  };
 
   return (
     <S.PopBrowse id="popBrowse">
@@ -36,9 +41,7 @@ function PopBrowse({ cardId }) {
           <S.Content>
             <S.TopBlock>
               <S.Title>{task[0].title}</S.Title>
-              <S.CategoryThemeTop
-                $themeColor={colors.get(task[0].topic)}
-              >
+              <S.CategoryThemeTop $themeColor={colors.get(task[0].topic)}>
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
               </S.CategoryThemeTop>
             </S.TopBlock>
@@ -88,27 +91,28 @@ function PopBrowse({ cardId }) {
 
             <S.ThemeDown>
               <S.CategorySubtitle>Категория</S.CategorySubtitle>
-              <S.CategoryTheme
-                $themeColor={colors.get(task[0].topic)}
-              >
+              <S.CategoryTheme $themeColor={colors.get(task[0].topic)}>
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
               </S.CategoryTheme>
             </S.ThemeDown>
-            
-            <ButtonBrowse>
-              <ButtonBrowseGroup>
-                <BrowseFormButtonBor>
-                  <a href="#">Редактировать задачу</a>
-                </BrowseFormButtonBor>
-                <BrowseFormButtonBor onClick={handleDeleteButton}>
-                  <a href="#">Удалить задачу</a>
-                </BrowseFormButtonBor>
-              </ButtonBrowseGroup>
-              <BrowseFormButtonBg>
-                <Link to={AppRoutes.MAIN}>Закрыть</Link>
-              </BrowseFormButtonBg>
-            </ButtonBrowse>
-            <ButtonBrowseHide className="_hide">
+
+            {!isEditActive && (
+              <ButtonBrowse>
+                <ButtonBrowseGroup>
+                  <BrowseFormButtonBor onClick={handleEditButton}>
+                    <a href="#">Редактировать задачу</a>
+                  </BrowseFormButtonBor>
+                  <BrowseFormButtonBor onClick={handleDeleteButton}>
+                    <a href="#">Удалить задачу</a>
+                  </BrowseFormButtonBor>
+                </ButtonBrowseGroup>
+                <BrowseFormButtonBg>
+                  <Link to={AppRoutes.MAIN}>Закрыть</Link>
+                </BrowseFormButtonBg>
+              </ButtonBrowse>
+            )}
+
+            {isEditActive && <ButtonBrowse className="_hide">
               <ButtonBrowseGroup>
                 <BrowseFormButtonBg>
                   <a href="#">Сохранить</a>
@@ -121,9 +125,10 @@ function PopBrowse({ cardId }) {
                 </BrowseFormButtonBor>
               </ButtonBrowseGroup>
               <BrowseFormButtonBg>
-                <a href="#">Закрыть</a>
+                <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </BrowseFormButtonBg>
-            </ButtonBrowseHide>
+            </ButtonBrowse>}
+            
           </S.Content>
         </S.Block>
       </S.Container>

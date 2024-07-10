@@ -199,10 +199,6 @@ export const ButtonBrowse = styled.div`
   justify-content: space-between;
 `;
 
-export const ButtonBrowseHide = styled.div`
-  display: none;
-`;
-
 export const ButtonBrowseGroup = styled.div``;
 
 export const BrowseFormButtonBor = styled(Button)`
