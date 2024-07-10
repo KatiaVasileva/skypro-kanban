@@ -1,14 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
-// import MainPage from "../pages/MainPage";
-import PropTypes from "prop-types";
 import { AppRoutes } from "../lib/appRoutes";
+import { useUserContext } from "../hooks/useUserContext";
 
-function PrivateRoute({ isAuth }) {
-  return isAuth ? <Outlet /> : <Navigate to={AppRoutes.LOGIN} />;
+function PrivateRoute() {
+  const { user } = useUserContext();
+  return user ? <Outlet /> : <Navigate to={AppRoutes.LOGIN} />;
 }
-
-PrivateRoute.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
-};
 
 export default PrivateRoute;

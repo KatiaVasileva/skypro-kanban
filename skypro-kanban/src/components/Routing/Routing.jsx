@@ -7,25 +7,24 @@ import LoginPage from "../../pages/LoginPage";
 import RegisterPage from "../../pages/RegisterPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import MainPage from "../../pages/MainPage";
-import { useState } from "react";
+import NewCardPage from "../../pages/NewCardPage";
 
 export default function Routing() {
-    const [isAuth, setIsAuth] = useState(false);
-
-    return (
-        <>
-        <Routes>
-          <Route element={<PrivateRoute isAuth={isAuth} />}>
-            <Route path={AppRoutes.MAIN}  element={<MainPage />} >
-              <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
-              <Route path={AppRoutes.EXIT} element={<ExitPage setIsAuth={setIsAuth}/>} />
-            </Route>
+  return (
+    <>
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path={AppRoutes.MAIN} element={<MainPage />}>
+            <Route path={AppRoutes.NEW_CARD} element={<NewCardPage/>} />
+            <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
+            <Route path={AppRoutes.EXIT} element={<ExitPage />} />
           </Route>
-  
-          <Route path={AppRoutes.LOGIN} element={<LoginPage setIsAuth={setIsAuth}/>} />
-          <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
-          <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
-        </Routes>
-      </>
-    );
+        </Route>
+
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+        <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
+      </Routes>
+    </>
+  );
 }

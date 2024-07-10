@@ -1,37 +1,18 @@
 import { useState, useEffect } from "react";
 import { ErrorMessage, Wrapper } from "../styles/Common.styled";
-import PopNewCard from "../components/popups/PopNewCard/PopNewCard";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Main from "../components/Main/Main";
 import { Outlet } from "react-router-dom";
-import { addTask, getTasks } from "../api";
-import { inputHandler } from "../lib/helpers";
+import { getTasks } from "../api";
+import { useUserContext } from "../hooks/useUserContext";
+import { useTaskContext } from "../hooks/useTaskContext";
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(false);
-
-  const newCard = {
-    title: " ",
-    topic: " ",
-    status: " ",
-    description: "Подробное описание задачи",
-    date: "",
-  };
-
-  const handleAddCardButton = async () => {
-    setGetTasksError(false);
-    const newTasks = await addTask({
-      title: inputHandler(newCard.title, "Новая задача"),
-      topic: inputHandler(newCard.topic, "Research"),
-      status: inputHandler(newCard.status, "Без статуса"),
-      description: inputHandler(newCard.description, " "),
-      date: inputHandler(newCard.date, Date.now()),
-    });
-    setTasks(newTasks.tasks);
-  };
+  const { user } = useUserContext();
+  const {setTasks} = useTaskContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,7 +22,7 @@ export default function MainPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    getTasks()
+    getTasks({ token: user.token })
       .then((tasks) => {
         setIsLoading(false);
         setTasks(tasks.tasks);
@@ -49,14 +30,13 @@ export default function MainPage() {
       .catch(() => {
         setGetTasksError("Не удалось загрузить данные, попробуйте позже.");
       });
-  }, []);
+  }, [user.token, setTasks]);
 
   return (
     <>
       <Wrapper>
-        <PopNewCard />
 
-        <Header onCardAdd={handleAddCardButton}></Header>
+        <Header ></Header>
 
         {isLoading ? (
           <>
@@ -67,7 +47,7 @@ export default function MainPage() {
             {getTasksError && <ErrorMessage>{getTasksError}</ErrorMessage>}
             {!getTasksError && (
               <>
-                <Main tasks={tasks}></Main>
+                <Main></Main>
                 <Outlet />
               </>
             )}

@@ -1,3 +1,5 @@
+import { useUserContext } from "../../../hooks/useUserContext";
+import { useTaskContext } from "../../../hooks/useTaskContext";
 import { AppRoutes } from "../../../lib/appRoutes";
 import {
   PopExitYesButton,
@@ -6,12 +8,16 @@ import {
   ExitNo,
 } from "../../../styles/Button.styled";
 import * as S from "./PopExit.styled";
-import PropTypes from "prop-types";
+import { removeTasksFromLocalStorage } from "../../../lib/helpers";
 
-function PopExit({ setIsAuth }) {
+function PopExit() {
+  const { updateUser } = useUserContext();
+  const { tasks } = useTaskContext();
+
   const handleExitButton = () => {
-    setIsAuth(false);
-  }
+    removeTasksFromLocalStorage(tasks);
+    updateUser(null);
+  };
 
   return (
     <S.PopExit id="popExit">
@@ -35,9 +41,5 @@ function PopExit({ setIsAuth }) {
     </S.PopExit>
   );
 }
-
-PopExit.propTypes = {
-  setIsAuth: PropTypes.func.isRequired,
-};
 
 export default PopExit;

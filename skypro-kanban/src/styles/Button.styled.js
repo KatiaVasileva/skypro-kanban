@@ -4,21 +4,25 @@ import { breakpoints } from "../lib/breakpoints.js";
 import { Link } from "react-router-dom";
 
 export const Button = styled.button`
+  height: 30px;
+  border-radius: 4px;
+  border: none;
   cursor: pointer;
   outline: none;
 `;
 
 export const HeaderButton = styled(Button)`
   width: 178px;
-  height: 30px;
-  border-radius: 4px;
   background-color: #565eef;
   color: #ffffff;
-  border: none;
   font-size: 14px;
   line-height: 1;
   font-weight: 500;
   margin-right: 20px;
+
+  a {
+    color: #ffffff;
+  }
 
   ${hover01}
 
@@ -30,17 +34,14 @@ export const HeaderButton = styled(Button)`
     top: auto;
     width: calc(100vw - 32px);
     height: 40px;
-    border-radius: 4px;
     margin-right: 0;
   }
 `;
 
 export const PopUserExitButton = styled(Button)`
   width: 72px;
-  height: 30px;
   background: transparent;
   color: #565eef;
-  border-radius: 4px;
   border: 1px solid #565eef;
 
   a {
@@ -64,7 +65,6 @@ export const CardButton = styled(Button)`
   align-items: center;
   justify-content: space-around;
   padding: 2px;
-  border: none;
   background-color: #fff;
 
   ${CardButtonDot}
@@ -91,11 +91,7 @@ export const ExitNo = styled(Link)`
 
 export const PopExitYesButton = styled(Button)`
   width: 153px;
-  height: 30px;
   background-color: #565eef;
-  border-radius: 4px;
-  border: none;
-  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,11 +116,7 @@ export const PopExitYesButton = styled(Button)`
 
 export const PopExitNoButton = styled(Button)`
   width: 153px;
-  height: 30px;
   background-color: #565eef;
-  border-radius: 4px;
-  border: none;
-  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +139,7 @@ export const PopExitNoButton = styled(Button)`
   }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled(Button)`
   cursor: pointer;
 `;
 
@@ -162,13 +154,9 @@ export const ButtonEnterLink = styled(Link)`
 
 export const ButtonEnter = styled(LoginButton)`
   width: 100%;
-  height: 30px;
   background-color: #565eef;
-  border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
-  border: none;
-  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,4 +173,63 @@ export const ButtonEnter = styled(LoginButton)`
   @media screen and (max-width: ${breakpoints.sm + "px"}) {
     height: 40px;
   }
+`;
+
+export const CreateButton = styled(Button)`
+  width: 132px;
+  background-color: #565eef;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+  float: right;
+
+  ${hover01}
+
+  @media screen and (max-width: ${breakpoints.md + "px"}) {
+    width: 100%;
+    height: 40px;
+  }
+`;
+
+export const ButtonBrowse = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const ButtonBrowseHide = styled.div`
+  display: none;
+`;
+
+export const ButtonBrowseGroup = styled.div``;
+
+export const BrowseFormButtonBor = styled(Button)`
+  margin-bottom: 10px;
+  padding: 0 14px;
+  margin-right: 8px;
+  border: 0.7px solid var(--palette-navy-60, #565eef);
+  background: transparent;
+  color: #565eef;
+
+  a {
+    color: #565eef;
+  }
+
+  ${hover03}
+`;
+
+export const BrowseFormButtonBg = styled(Button)`
+  margin-bottom: 10px;
+  padding: 0 14px;
+  margin-right: 8px;
+  background: #565eef;
+  color: #ffffff;
+
+  a {
+    color: #ffffff;
+  }
+
+  ${hover01}
 `;

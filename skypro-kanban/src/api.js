@@ -1,11 +1,5 @@
 const baseHost = "https://wedev-api.sky.pro/api";
 
-export let token;
-
-export const setToken = (newToken) => {
-  token = newToken;
-};
-
 // Авторизоваться
 export async function login({ login, password }) {
   const response = await fetch(baseHost + "/user/login", {
@@ -46,7 +40,7 @@ export async function register({ login, name, password }) {
 }
 
 // Получить список задач
-export async function getTasks() {
+export async function getTasks({ token }) {
   const response = await fetch(baseHost + "/kanban", {
     method: "GET",
     headers: {
@@ -66,7 +60,7 @@ export async function getTasks() {
 }
 
 // Добавить задачу в список
-export async function addTask({ title, topic, status, description, date }) {
+export async function addTask({ title, topic, status, description, date, token }) {
   const response = await fetch(baseHost + "/kanban", {
     method: "POST",
     headers: {

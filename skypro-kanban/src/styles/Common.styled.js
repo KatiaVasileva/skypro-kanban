@@ -8,6 +8,12 @@ export const Wrapper = styled.div`
   background-color: #f1f1f1;
 `;
 
+export const PopWrap = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+`;
+
 export const Container = styled.div`
   max-width: 1260px;
   width: 100%;
@@ -23,6 +29,7 @@ export const Container = styled.div`
 export const ErrorMessage = styled.p`
   padding: 40px;
   font-weight: 500;
+  color: #F84D4D;
 `;
 
 export const hover01 = css`

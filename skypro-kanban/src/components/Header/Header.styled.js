@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { hover02 } from "../../styles/Common.styled";
+import { Link } from "react-router-dom";
 
 export const Header = styled.header`
   width: 100%;
@@ -37,6 +38,10 @@ export const Logo = styled.div`
 
 export const LogoDark = styled(Logo)`
   display: none;
+`;
+
+export const HeaderLink = styled(Link)`
+ 
 `;
 
 export const HeaderUser = styled.span`
