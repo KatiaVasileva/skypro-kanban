@@ -21,11 +21,13 @@ function PopBrowse({ cardId }) {
   const { tasks, setTasks } = useTaskContext();
   const navigate = useNavigate();
   const [isEditActive, setIsEditActive] = useState(false);
+  const [isReadonly, setIsReadonly] = useState(true);
 
   const task = tasks.filter((task) => task._id === cardId);
 
   const handleEditButton = () => {
     setIsEditActive(true);
+    setIsReadonly(false);
   };
 
   const handleDeleteButton = async () => {
@@ -48,25 +50,36 @@ function PopBrowse({ cardId }) {
             <S.Status>
               <S.Id>{"Идентификационный номер задачи: " + cardId}</S.Id>
               <br />
+
               <S.StatusTitle>Статус</S.StatusTitle>
-              <S.StatusThemes>
-                <S.StatusThemeHide>
-                  <S.StatusThemeText>Без статуса</S.StatusThemeText>
-                </S.StatusThemeHide>
-                <S.StatusThemeGray>
-                  <S.StatusThemeTextGray>Нужно сделать</S.StatusThemeTextGray>
-                </S.StatusThemeGray>
-                <S.StatusThemeHide>
-                  <S.StatusThemeText>В работе</S.StatusThemeText>
-                </S.StatusThemeHide>
-                <S.StatusThemeHide>
-                  <S.StatusThemeText>Тестирование</S.StatusThemeText>
-                </S.StatusThemeHide>
-                <S.StatusThemeHide>
-                  <S.StatusThemeText>Готово</S.StatusThemeText>
-                </S.StatusThemeHide>
-              </S.StatusThemes>
+              {!isEditActive && (
+                <S.StatusThemes>
+                  <S.StatusThemeGray>
+                    <S.StatusThemeTextGray>Без статуса</S.StatusThemeTextGray>
+                  </S.StatusThemeGray>
+                </S.StatusThemes>
+              )}
+              {isEditActive && (
+                <S.StatusThemes>
+                  <S.StatusTheme>
+                    <S.StatusThemeText>Без статуса</S.StatusThemeText>
+                  </S.StatusTheme>
+                  <S.StatusTheme>
+                    <S.StatusThemeText>Нужно сделать</S.StatusThemeText>
+                  </S.StatusTheme>
+                  <S.StatusTheme>
+                    <S.StatusThemeText>В работе</S.StatusThemeText>
+                  </S.StatusTheme>
+                  <S.StatusTheme>
+                    <S.StatusThemeText>Тестирование</S.StatusThemeText>
+                  </S.StatusTheme>
+                  <S.StatusTheme>
+                    <S.StatusThemeText>Готово</S.StatusThemeText>
+                  </S.StatusTheme>
+                </S.StatusThemes>
+              )}
             </S.Status>
+
             <S.Wrap>
               <S.Form id="formBrowseCard" action="#">
                 <S.FormBlock>
@@ -77,7 +90,7 @@ function PopBrowse({ cardId }) {
                     name="description"
                     value={task[0].description}
                     id="textArea01"
-                    readOnly
+                    readOnly={isReadonly}
                     placeholder="Введите описание задачи..."
                   ></S.FormTextarea>
                 </S.FormBlock>
@@ -112,23 +125,24 @@ function PopBrowse({ cardId }) {
               </ButtonBrowse>
             )}
 
-            {isEditActive && <ButtonBrowse className="_hide">
-              <ButtonBrowseGroup>
+            {isEditActive && (
+              <ButtonBrowse className="_hide">
+                <ButtonBrowseGroup>
+                  <BrowseFormButtonBg>
+                    <a href="#">Сохранить</a>
+                  </BrowseFormButtonBg>
+                  <BrowseFormButtonBor>
+                    <a href="#">Отменить</a>
+                  </BrowseFormButtonBor>
+                  <BrowseFormButtonBor id="btnDelete">
+                    <a href="#">Удалить задачу</a>
+                  </BrowseFormButtonBor>
+                </ButtonBrowseGroup>
                 <BrowseFormButtonBg>
-                  <a href="#">Сохранить</a>
+                  <Link to={AppRoutes.MAIN}>Закрыть</Link>
                 </BrowseFormButtonBg>
-                <BrowseFormButtonBor>
-                  <a href="#">Отменить</a>
-                </BrowseFormButtonBor>
-                <BrowseFormButtonBor id="btnDelete">
-                  <a href="#">Удалить задачу</a>
-                </BrowseFormButtonBor>
-              </ButtonBrowseGroup>
-              <BrowseFormButtonBg>
-                <Link to={AppRoutes.MAIN}>Закрыть</Link>
-              </BrowseFormButtonBg>
-            </ButtonBrowse>}
-            
+              </ButtonBrowse>
+            )}
           </S.Content>
         </S.Block>
       </S.Container>
