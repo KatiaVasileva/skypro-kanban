@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Calendar from "../../Calendar/Calender";
 import PropTypes from "prop-types";
 import { AppRoutes } from "../../../lib/appRoutes";
@@ -13,11 +13,21 @@ import {
   ButtonBrowseHide,
 } from "../../../styles/Button.styled";
 import { format } from "date-fns";
+import { removeTask } from "../../../api";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 function PopBrowse({ cardId }) {
-  const { tasks } = useTaskContext();
+  const {user} = useUserContext();
+  const { tasks, setTasks } = useTaskContext();
+  const navigate = useNavigate();
 
   const task = tasks.filter((task) => task._id === cardId);
+
+  const handleDeleteButton = async () => {
+    const newTasks = await removeTask({id: cardId, token: user.token});
+    setTasks(newTasks.tasks);
+    navigate(AppRoutes.MAIN);
+  }
 
   return (
     <S.PopBrowse id="popBrowse">
@@ -90,7 +100,7 @@ function PopBrowse({ cardId }) {
                 <BrowseFormButtonBor>
                   <a href="#">Редактировать задачу</a>
                 </BrowseFormButtonBor>
-                <BrowseFormButtonBor>
+                <BrowseFormButtonBor onClick={handleDeleteButton}>
                   <a href="#">Удалить задачу</a>
                 </BrowseFormButtonBor>
               </ButtonBrowseGroup>
