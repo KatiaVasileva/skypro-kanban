@@ -10,6 +10,7 @@ import { useTaskContext } from "../../../hooks/useTaskContext";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../../../styles/Common.styled";
 
 function Theme({ isActive, topic, onClick }) {
   return (
@@ -42,6 +43,8 @@ function PopNewCard() {
   });
   const [activeIndex, setActiveIndex] = useState(0);
   const [addTaskError, setAddTaskError] = useState(false);
+  const [dateEnd, setDateEnd] = useState("Выберите срок исполнения.");
+  const [dateControl, setDateControl] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -104,8 +107,10 @@ function PopNewCard() {
               </S.Form>
 
               <Calendar
-                dateEnd={"Выберите срок исполнения."}
-                dateControl={""}
+                dateEnd={dateEnd}
+                setDateEnd={setDateEnd}
+                dateControl={dateControl}
+                setDateControl={setDateControl}
                 formData={formData}
                 setFormData={setFormData}
               />
@@ -149,7 +154,7 @@ function PopNewCard() {
                 />
               </S.CategoriesTheme>
             </S.Categories>
-            <p style={{ color: "red" }}>{addTaskError}</p>
+            <ErrorMessage>{addTaskError}</ErrorMessage>
             <CreateButton id="btnCreate" onClick={handleAddCardButton}>
               Создать задачу
             </CreateButton>

@@ -29,6 +29,7 @@ export const Container = styled.div`
 export const ErrorMessage = styled.p`
   padding: 40px;
   font-weight: 500;
+  color: #F84D4D;
 `;
 
 export const hover01 = css`
