@@ -14,8 +14,9 @@ import {
 import { format } from "date-fns";
 import { removeTask, updateTask } from "../../../api";
 import { useUserContext } from "../../../hooks/useUserContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { statusList } from "../../../lib/data";
+
 
 function Status({ isStatusActive, statusTheme, onClick }) {
   return (
@@ -41,7 +42,7 @@ function PopBrowse({ cardId }) {
   const [isReadonly, setIsReadonly] = useState(true);
   const [statusIndex, setStatusIndex] = useState(0);
 
-  const task = tasks.filter((task) => task._id === cardId);
+  let task = tasks.filter((task) => task._id === cardId);
 
   const [formData, setFormData] = useState({
     title: task[0].title,
@@ -50,6 +51,8 @@ function PopBrowse({ cardId }) {
     description: task[0].description,
     date: task[0].date,
   });
+
+  const inputRef = useRef();
 
   const [dateControl, setDateControl] = useState(
     format(task[0].date, "dd.MM.yy")
@@ -85,6 +88,17 @@ function PopBrowse({ cardId }) {
     navigate(AppRoutes.MAIN);
   };
 
+  const handleCancelButton = () => {
+    setFormData({
+      ...formData,
+      status: task[0].status,
+    })
+    setDateControl(format(task[0].date, "dd.MM.yy"));
+    inputRef.current.value = task[0].description;
+    setIsReadonly(true);
+    setIsEditActive(prevState => !prevState);
+  }
+
   const handleDeleteButton = async () => {
     const newTasks = await removeTask({ id: cardId, token: user.token });
     setTasks(newTasks.tasks);
@@ -97,9 +111,9 @@ function PopBrowse({ cardId }) {
         <S.Block>
           <S.Content>
             <S.TopBlock>
-              <S.Title>{task[0].title}</S.Title>
-              <S.CategoryThemeTop $themeColor={colors.get(task[0].topic)}>
-                <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
+              <S.Title>{formData.title}</S.Title>
+              <S.CategoryThemeTop $themeColor={colors.get(formData.topic)}>
+                <S.CategoryThemeName>{formData.topic}</S.CategoryThemeName>
               </S.CategoryThemeTop>
             </S.TopBlock>
 
@@ -109,7 +123,7 @@ function PopBrowse({ cardId }) {
                 <S.StatusThemes>
                   <S.StatusThemeGray>
                     <S.StatusThemeTextGray>
-                      {task[0].status}
+                      {formData.status}
                     </S.StatusThemeTextGray>
                   </S.StatusThemeGray>
                 </S.StatusThemes>
@@ -183,11 +197,12 @@ function PopBrowse({ cardId }) {
                   </S.FormBlockTitle>
                   <S.FormTextarea
                     name="description"
-                    defaultValue={task[0].description}
+                    defaultValue={formData.description}
                     id="textArea01"
                     readOnly={isReadonly}
                     placeholder="Введите описание задачи..."
                     onChange={handleInputChange}
+                    ref={inputRef}
                   >
                   </S.FormTextarea>
                 </S.FormBlock>
@@ -210,8 +225,8 @@ function PopBrowse({ cardId }) {
 
             <S.ThemeDown>
               <S.CategorySubtitle>Категория</S.CategorySubtitle>
-              <S.CategoryTheme $themeColor={colors.get(task[0].topic)}>
-                <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
+              <S.CategoryTheme $themeColor={colors.get(formData.topic)}>
+                <S.CategoryThemeName>{formData.topic}</S.CategoryThemeName>
               </S.CategoryTheme>
             </S.ThemeDown>
 
@@ -219,10 +234,10 @@ function PopBrowse({ cardId }) {
               <ButtonBrowse>
                 <ButtonBrowseGroup>
                   <BrowseFormButtonBor onClick={handleEditButton}>
-                    <a href="#">Редактировать задачу</a>
+                    <Link>Редактировать задачу</Link>
                   </BrowseFormButtonBor>
                   <BrowseFormButtonBor onClick={handleDeleteButton}>
-                    <a href="#">Удалить задачу</a>
+                    <Link>Удалить задачу</Link>
                   </BrowseFormButtonBor>
                 </ButtonBrowseGroup>
                 <BrowseFormButtonBg>
@@ -237,10 +252,10 @@ function PopBrowse({ cardId }) {
                   <BrowseFormButtonBg onClick={handleSaveButton}>
                     <a href="#">Сохранить</a>
                   </BrowseFormButtonBg>
-                  <BrowseFormButtonBor>
+                  <BrowseFormButtonBor type="reset" onClick={handleCancelButton}>
                     <a href="#">Отменить</a>
                   </BrowseFormButtonBor>
-                  <BrowseFormButtonBor id="btnDelete">
+                  <BrowseFormButtonBor onClick={handleDeleteButton}>
                     <a href="#">Удалить задачу</a>
                   </BrowseFormButtonBor>
                 </ButtonBrowseGroup>
