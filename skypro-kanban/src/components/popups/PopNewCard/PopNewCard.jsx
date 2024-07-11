@@ -41,7 +41,7 @@ function PopNewCard() {
     description: "",
     date: "",
   });
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [addTaskError, setAddTaskError] = useState(false);
   const [dateEnd, setDateEnd] = useState("Выберите срок исполнения.");
   const [dateControl, setDateControl] = useState("");

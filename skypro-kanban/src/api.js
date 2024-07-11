@@ -92,6 +92,37 @@ export async function addTask({
   return await response.json();
 }
 
+// Изменить задачу
+export async function updateTask({
+  id,
+  token,
+  title,
+  topic,
+  status,
+  description,
+  date,
+}) {
+  const response = await fetch(baseHost + "/kanban/" + id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  if (response.status === 401) {
+    throw new Error("Нет авторизации");
+  }
+
+  return await response.json();
+}
+
 // Удалить задачу
 export async function removeTask({ id, token }) {
   const response = await fetch(baseHost + "/kanban/" + id, {

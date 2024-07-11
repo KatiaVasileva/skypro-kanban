@@ -12,9 +12,10 @@ import {
   ButtonBrowseGroup,
 } from "../../../styles/Button.styled";
 import { format } from "date-fns";
-import { removeTask } from "../../../api";
+import { removeTask, updateTask } from "../../../api";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { useState } from "react";
+import { statusList } from "../../../lib/data";
 
 function Status({ isStatusActive, statusTheme, onClick }) {
   return (
@@ -42,9 +43,46 @@ function PopBrowse({ cardId }) {
 
   const task = tasks.filter((task) => task._id === cardId);
 
+  const [formData, setFormData] = useState({
+    title: task[0].title,
+    topic: task[0].topic,
+    status: task[0].status,
+    description: task[0].description,
+    date: task[0].date,
+  });
+
+  const [dateControl, setDateControl] = useState(
+    format(task[0].date, "dd.MM.yy")
+  );
+  const [dateEnd, setDateEnd] = useState("Срок исполнения: ");
+
   const handleEditButton = () => {
+    setStatusIndex(statusList.indexOf(task[0].status));
     setIsEditActive(true);
     setIsReadonly(false);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSaveButton = async () => {
+    const newTasks = await updateTask({
+      title: formData.title,
+      topic: formData.topic,
+      status: formData.status,
+      description: formData.description,
+      date: formData.date,
+      token: user.token,
+      id: cardId,
+    });
+    setTasks(newTasks.tasks);
+    navigate(AppRoutes.MAIN);
   };
 
   const handleDeleteButton = async () => {
@@ -64,13 +102,15 @@ function PopBrowse({ cardId }) {
                 <S.CategoryThemeName>{task[0].topic}</S.CategoryThemeName>
               </S.CategoryThemeTop>
             </S.TopBlock>
-            
+
             <S.Status>
               <S.StatusTitle>Статус</S.StatusTitle>
               {!isEditActive && (
                 <S.StatusThemes>
                   <S.StatusThemeGray>
-                    <S.StatusThemeTextGray>Без статуса</S.StatusThemeTextGray>
+                    <S.StatusThemeTextGray>
+                      {task[0].status}
+                    </S.StatusThemeTextGray>
                   </S.StatusThemeGray>
                 </S.StatusThemes>
               )}
@@ -81,6 +121,10 @@ function PopBrowse({ cardId }) {
                     statusTheme="Без статуса"
                     onClick={() => {
                       setStatusIndex(0);
+                      setFormData({
+                        ...formData,
+                        ["status"]: "Без статуса",
+                      });
                     }}
                   />
                   <Status
@@ -88,6 +132,10 @@ function PopBrowse({ cardId }) {
                     statusTheme="Нужно сделать"
                     onClick={() => {
                       setStatusIndex(1);
+                      setFormData({
+                        ...formData,
+                        ["status"]: "Нужно сделать",
+                      });
                     }}
                   />
                   <Status
@@ -95,6 +143,10 @@ function PopBrowse({ cardId }) {
                     statusTheme="В работе"
                     onClick={() => {
                       setStatusIndex(2);
+                      setFormData({
+                        ...formData,
+                        ["status"]: "В работе",
+                      });
                     }}
                   />
                   <Status
@@ -102,6 +154,10 @@ function PopBrowse({ cardId }) {
                     statusTheme="Тестирование"
                     onClick={() => {
                       setStatusIndex(3);
+                      setFormData({
+                        ...formData,
+                        ["status"]: "Тестирование",
+                      });
                     }}
                   />
                   <Status
@@ -109,6 +165,10 @@ function PopBrowse({ cardId }) {
                     statusTheme="Готово"
                     onClick={() => {
                       setStatusIndex(4);
+                      setFormData({
+                        ...formData,
+                        ["status"]: "Готово",
+                      });
                     }}
                   />
                 </S.StatusThemes>
@@ -123,18 +183,29 @@ function PopBrowse({ cardId }) {
                   </S.FormBlockTitle>
                   <S.FormTextarea
                     name="description"
-                    value={task[0].description}
+                    defaultValue={task[0].description}
                     id="textArea01"
                     readOnly={isReadonly}
                     placeholder="Введите описание задачи..."
-                  ></S.FormTextarea>
+                    onChange={handleInputChange}
+                  >
+                  </S.FormTextarea>
                 </S.FormBlock>
               </S.Form>
 
-              <Calendar
-                dateEnd={"Срок исполнения: "}
-                dateControl={format(task[0].date, "dd.MM.yy")}
-              />
+              {!isEditActive && (
+                <Calendar dateEnd={dateEnd} dateControl={dateControl} />
+              )}
+              {isEditActive && (
+                <Calendar
+                  dateEnd={dateEnd}
+                  setDateEnd={setDateEnd}
+                  dateControl={dateControl}
+                  setDateControl={setDateControl}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              )}
             </S.Wrap>
 
             <S.ThemeDown>
@@ -163,7 +234,7 @@ function PopBrowse({ cardId }) {
             {isEditActive && (
               <ButtonBrowse className="_hide">
                 <ButtonBrowseGroup>
-                  <BrowseFormButtonBg>
+                  <BrowseFormButtonBg onClick={handleSaveButton}>
                     <a href="#">Сохранить</a>
                   </BrowseFormButtonBg>
                   <BrowseFormButtonBor>
@@ -188,7 +259,7 @@ function PopBrowse({ cardId }) {
 Status.propTypes = {
   isStatusActive: PropTypes.bool.isRequired,
   statusTheme: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 PopBrowse.propTypes = {
