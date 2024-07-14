@@ -11,7 +11,8 @@ export const lightTheme = {
     popNewCardBoxShadow: "",
     blockBorder: "#D4DBE5",
     button03: "#565EEF",
-    activeDay: "#FFFFFF",   
+    activeDay: "#FFFFFF",
+    gray: "#FFFFFF",
 };
 
 export const darkTheme = {
@@ -28,5 +29,6 @@ export const darkTheme = {
     blockBorder: "#4E5566",
     button03: "#FFFFFF",
     activeDay: "#151419",
+    gray: "#000000"
 };
 

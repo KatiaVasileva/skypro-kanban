@@ -5,7 +5,6 @@ import { AppRoutes } from "../../../lib/appRoutes";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { useThemeContext } from "../../../hooks/useThemeContext";
 
-// eslint-disable-next-line react/prop-types
 function PopUser() {
   const { user } = useUserContext();
   const {theme, setTheme} = useThemeContext();

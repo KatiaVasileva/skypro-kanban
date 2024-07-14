@@ -146,11 +146,11 @@ export const StatusThemeHide = styled(StatusTheme)`
 `;
 
 export const StatusThemeGray = styled(StatusTheme)`
-  background-color: ${topicStyles._gray.backgroundColor};
+  background-color: #94A6BE;
 `;
 
 export const StatusThemeTextGray = styled(StatusThemeText)`
-  color: ${topicStyles._gray.color};
+  color: ${(props) => props.theme.gray};
 `;
 
 export const Wrap = styled.div`

@@ -4,13 +4,19 @@ import { colors } from "../../lib/topicStyles.js";
 import { CardButton, CardButtonDot } from "../../styles/Button.styled.js";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { useThemeContext } from "../../hooks/useThemeContext.js";
 
 function Card({ task }) {
+  const { theme } = useThemeContext();
+  const topicStyle = colors.get(task.topic);
+
   return (
     <S.CardsItem>
       <S.Card>
         <S.CardGroup>
-          <S.CardTheme $themeColor={colors.get(task.topic)}>
+          <S.CardTheme
+            $themeColor={theme === "light" ? topicStyle : topicStyle + "_dark"}
+          >
             <S.ThemeText>{task.topic}</S.ThemeText>
           </S.CardTheme>
           <Link to={"/card/" + task._id}>

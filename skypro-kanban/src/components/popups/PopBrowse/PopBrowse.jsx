@@ -16,7 +16,7 @@ import { removeTask, updateTask } from "../../../api";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { useRef, useState } from "react";
 import { statusList } from "../../../lib/data";
-
+import { useThemeContext } from "../../../hooks/useThemeContext";
 
 function Status({ isStatusActive, statusTheme, onClick }) {
   return (
@@ -37,6 +37,7 @@ function Status({ isStatusActive, statusTheme, onClick }) {
 function PopBrowse({ cardId }) {
   const { user } = useUserContext();
   const { tasks, setTasks } = useTaskContext();
+  const { theme } = useThemeContext();
   const navigate = useNavigate();
   const [isEditActive, setIsEditActive] = useState(false);
   const [isReadonly, setIsReadonly] = useState(true);
@@ -51,6 +52,9 @@ function PopBrowse({ cardId }) {
     description: task[0].description,
     date: task[0].date,
   });
+
+  const topicStyle = colors.get(formData.topic);
+  console.log(topicStyle);
 
   const inputRef = useRef();
 
@@ -92,12 +96,12 @@ function PopBrowse({ cardId }) {
     setFormData({
       ...formData,
       status: task[0].status,
-    })
+    });
     setDateControl(format(task[0].date, "dd.MM.yy"));
     inputRef.current.value = task[0].description;
     setIsReadonly(true);
-    setIsEditActive(prevState => !prevState);
-  }
+    setIsEditActive((prevState) => !prevState);
+  };
 
   const handleDeleteButton = async () => {
     const newTasks = await removeTask({ id: cardId, token: user.token });
@@ -112,7 +116,11 @@ function PopBrowse({ cardId }) {
           <S.Content>
             <S.TopBlock>
               <S.Title>{formData.title}</S.Title>
-              <S.CategoryThemeTop $themeColor={colors.get(formData.topic)}>
+              <S.CategoryThemeTop
+                $themeColor={
+                  theme === "light" ? topicStyle : topicStyle + "_dark"
+                }
+              >
                 <S.CategoryThemeName>{formData.topic}</S.CategoryThemeName>
               </S.CategoryThemeTop>
             </S.TopBlock>
@@ -203,8 +211,7 @@ function PopBrowse({ cardId }) {
                     placeholder="Введите описание задачи..."
                     onChange={handleInputChange}
                     ref={inputRef}
-                  >
-                  </S.FormTextarea>
+                  ></S.FormTextarea>
                 </S.FormBlock>
               </S.Form>
 
@@ -225,7 +232,11 @@ function PopBrowse({ cardId }) {
 
             <S.ThemeDown>
               <S.CategorySubtitle>Категория</S.CategorySubtitle>
-              <S.CategoryTheme $themeColor={colors.get(formData.topic)}>
+              <S.CategoryTheme
+                $themeColor={
+                  theme === "light" ? topicStyle : topicStyle + "_dark"
+                }
+              >
                 <S.CategoryThemeName>{formData.topic}</S.CategoryThemeName>
               </S.CategoryTheme>
             </S.ThemeDown>
@@ -247,12 +258,12 @@ function PopBrowse({ cardId }) {
             )}
 
             {isEditActive && (
-              <ButtonBrowse className="_hide">
+              <ButtonBrowse>
                 <ButtonBrowseGroup>
                   <BrowseFormButtonBg onClick={handleSaveButton}>
                     <a href="#">Сохранить</a>
                   </BrowseFormButtonBg>
-                  <BrowseFormButtonBor type="reset" onClick={handleCancelButton}>
+                  <BrowseFormButtonBor onClick={handleCancelButton}>
                     <a href="#">Отменить</a>
                   </BrowseFormButtonBor>
                   <BrowseFormButtonBor onClick={handleDeleteButton}>

@@ -8,7 +8,6 @@ import { getTasks } from "../api";
 import { useUserContext } from "../hooks/useUserContext";
 import { useTaskContext } from "../hooks/useTaskContext";
 
-// eslint-disable-next-line react/prop-types
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [getTasksError, setGetTasksError] = useState(false);
@@ -36,7 +35,7 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-        <Header/>
+        <Header />
 
         {isLoading ? (
           <>
