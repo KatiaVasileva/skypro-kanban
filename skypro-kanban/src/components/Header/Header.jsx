@@ -6,7 +6,8 @@ import { Container } from "../../styles/Common.styled.js";
 import { useUserContext } from "../../hooks/useUserContext.js";
 import { AppRoutes } from "../../lib/appRoutes.js";
 
-function Header() {
+// eslint-disable-next-line react/prop-types
+function Header({ toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUserContext();
 
@@ -30,11 +31,13 @@ function Header() {
           </S.LogoDark>
           <S.Nav>
             <HeaderButton id="btnMainNew">
-              <S.HeaderLink to={AppRoutes.NEW_CARD}>Создать новую задачу</S.HeaderLink>
+              <S.HeaderLink to={AppRoutes.NEW_CARD}>
+                Создать новую задачу
+              </S.HeaderLink>
               {/* Создать новую задачу */}
             </HeaderButton>
             <S.HeaderUser onClick={toggleWindow}>{user.name}</S.HeaderUser>
-            {isOpen && <PopUser />}
+            {isOpen && <PopUser toggleTheme={toggleTheme}/>}
           </S.Nav>
         </S.HeaderBlock>
       </Container>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
+import { subtitle01 } from "../../styles/Common.styled";
 
 export const Calendar = styled.div`
   width: 182px;
@@ -13,10 +14,7 @@ export const Calendar = styled.div`
 export const CalendarTitle = styled.p`
   margin-bottom: 14px;
   padding: 0 7px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
+  ${subtitle01}
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     padding: 0;
@@ -165,7 +163,7 @@ export const CalendarPeriodDate = styled.p`
   margin-top: 14px;
 
   span {
-    color: #000000;
+    color: ${(props) => props.theme.body};
   }
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     font-size: 14px;

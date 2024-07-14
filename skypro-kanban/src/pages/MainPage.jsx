@@ -8,11 +8,12 @@ import { getTasks } from "../api";
 import { useUserContext } from "../hooks/useUserContext";
 import { useTaskContext } from "../hooks/useTaskContext";
 
-export default function MainPage() {
+// eslint-disable-next-line react/prop-types
+export default function MainPage({ toggleTheme }) {
   const [isLoading, setIsLoading] = useState(false);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
-  const {setTasks} = useTaskContext();
+  const { setTasks } = useTaskContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,8 +36,7 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-
-        <Header ></Header>
+        <Header toggleTheme={toggleTheme} />
 
         {isLoading ? (
           <>

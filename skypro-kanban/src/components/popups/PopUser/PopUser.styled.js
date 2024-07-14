@@ -8,9 +8,9 @@ export const PopUser = styled.div`
   width: 213px;
   height: 205px;
   border-radius: 10px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
-  background: #fff;
-  box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
+  border: ${(props) => props.theme.popUserBorder};
+  background: ${(props) => props.theme.popUserBackground};
+  box-shadow: ${(props) => props.theme.popUserBoxShadow};
   padding: 34px;
   text-align: center;
   z-index: 2;
@@ -21,7 +21,7 @@ export const PopUser = styled.div`
 `;
 
 export const Name = styled.p`
-  color: #000;
+  color: ${(props) => props.theme.body};
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
@@ -38,7 +38,7 @@ export const Mail = styled.p`
 `;
 
 export const DarkThemeText = styled.p`
-  color: #000;
+  color: ${(props) => props.theme.body};
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.14px;
@@ -63,7 +63,7 @@ export const Checkbox = styled.input`
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background-color: #94a6be;
+    background-color: ${(props) => props.theme.popUserCheckBox};
     transition: 0.5s;
   }
 

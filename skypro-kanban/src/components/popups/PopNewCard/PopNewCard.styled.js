@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { Link } from "react-router-dom";
 import { topicStyles } from "../../../lib/topicStyles";
+import { subtitle01, title01 } from "../../../styles/Common.styled";
 
 export const PopNewCard = styled.div`
   display: block;
@@ -32,7 +33,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${(props) => props.theme.container};
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     padding: 0;
@@ -48,13 +49,14 @@ export const Container = styled.div`
 export const Block = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.block};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.blockBorder};
   position: relative;
+  box-shadow: ${(props) => props.theme.popNewCardBoxShadow};
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     border-radius: 0;
@@ -73,10 +75,7 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
+  ${title01}
   margin-bottom: 20px;
 `;
 
@@ -121,10 +120,7 @@ export const FormBlock = styled.div`
 `;
 
 export const Subtitle = styled.label`
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
+  ${subtitle01}
 `;
 
 export const Input = css`
@@ -137,6 +133,7 @@ export const Input = css`
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
+  color: ${(props => props.theme.body)};
 
   &::-moz-placeholder,
   &::-webkit-placeholder,
@@ -172,10 +169,7 @@ export const Categories = styled.div`
 `;
 
 export const CategoriesSubtitle = styled.p`
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
+  ${subtitle01}
   margin-bottom: 14px;
 `;
 

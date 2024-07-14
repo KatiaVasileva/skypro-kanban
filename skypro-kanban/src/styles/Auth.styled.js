@@ -27,12 +27,12 @@ export const Modal = styled.div`
 export const Block = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.block};
   max-width: 368px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.blockBorder};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media screen and (max-width: ${breakpoints.sm + "px"}) {
@@ -58,7 +58,7 @@ export const ErrorMessage = styled.span`
   font-size: 12px;
   line-height: 18px;
   letter-spacing: -1%;
-  color: #F84D4D;
+  color: #f84d4d;
   text-align: center;
 `;
 
@@ -69,6 +69,8 @@ export const Input = styled.input`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   outline: none;
   padding: 10px 8px;
+  background-color: ${(props) => props.theme.block};
+  color: ${(props => props.theme.body)};
 
   &::placeholder {
     font-family: "Roboto", sans-serif;
@@ -78,6 +80,10 @@ export const Input = styled.input`
     letter-spacing: -0.28px;
     color: #94a6be;
   }
+`;
+
+export const InputError = styled(Input)`
+  border: 0.7px solid #F84D4D;
 `;
 
 export const InputForm = styled.form`

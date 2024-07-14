@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: ${(props) => props.theme.wrapper};
 `;
 
 export const PopWrap = styled.div`
@@ -29,7 +29,21 @@ export const Container = styled.div`
 export const ErrorMessage = styled.p`
   padding: 40px;
   font-weight: 500;
-  color: #F84D4D;
+  color: #f84d4d;
+`;
+
+export const title01 = css`
+  color: ${(props) => props.theme.body};
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+`;
+
+export const subtitle01 = css`
+  color: ${(props) => props.theme.body};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
 `;
 
 export const hover01 = css`
@@ -53,6 +67,7 @@ export const hover03 = css`
   &:hover {
     background-color: #565eef;
     color: #ffffff;
+    border-color: #565eef;
 
     a {
       color: #ffffff;

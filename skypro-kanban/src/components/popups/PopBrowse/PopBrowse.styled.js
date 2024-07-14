@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { breakpoints } from "../../../lib/breakpoints";
 import { topicStyles } from "../../../lib/topicStyles";
+import { subtitle01, title01 } from "../../../styles/Common.styled";
 
 export const PopBrowse = styled.div`
   display: block;
@@ -27,7 +28,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${(props) => props.theme.container};
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     padding: 0;
@@ -38,12 +39,12 @@ export const Container = styled.div`
 export const Block = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.block};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 38px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${(props) => props.theme.blockBorder};
   position: relative;
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
@@ -101,19 +102,11 @@ export const TopBlock = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
+  ${title01}
 `;
 
 export const Status = styled.div`
   margin-bottom: 11px;
-`;
-
-export const Id = styled.p`
-  color: gray;
-  font-size: 15px;
 `;
 
 export const StatusTitle = styled.p`
@@ -190,13 +183,14 @@ export const FormBlockTitle = styled.label`
   font-size: 14px;
   font-weight: 600;
   line-height: 16px;
-`;
+`;  
 
 export const FormTextarea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
-  background: #eaeef6;
+  color: ${(props) => props.theme.body};
+  background: ${(props) => props.theme.main};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-family: "Roboto", sans-serif;
@@ -235,8 +229,5 @@ export const ThemeDown = styled.div`
 
 export const CategorySubtitle = styled.p`
   margin-bottom: 14px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
+  ${subtitle01}
 `;
