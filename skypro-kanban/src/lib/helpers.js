@@ -36,3 +36,18 @@ export function getTasksFromLocalStorage() {
 export function removeTasksFromLocalStorage() {
     window.localStorage.removeItem("tasks");
 }
+
+export function getThemeFromLocalStorage() {
+    try {
+        if(!window.localStorage.getItem("theme")) {
+            return "light";
+        }
+        return JSON.parse(window.localStorage.getItem("theme"));
+    } catch (error) {
+        return error.message;
+    }
+}
+
+export function saveThemeToLocalStorage(theme) {
+    window.localStorage.setItem("theme", JSON.stringify(theme));
+}

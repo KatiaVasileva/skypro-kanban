@@ -9,7 +9,7 @@ import { useUserContext } from "../hooks/useUserContext";
 import { useTaskContext } from "../hooks/useTaskContext";
 
 // eslint-disable-next-line react/prop-types
-export default function MainPage({ toggleTheme }) {
+export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
@@ -36,7 +36,7 @@ export default function MainPage({ toggleTheme }) {
   return (
     <>
       <Wrapper>
-        <Header toggleTheme={toggleTheme} />
+        <Header/>
 
         {isLoading ? (
           <>

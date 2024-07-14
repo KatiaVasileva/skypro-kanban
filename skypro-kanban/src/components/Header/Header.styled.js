@@ -36,10 +36,6 @@ export const Logo = styled.div`
   ${LogoImage}
 `;
 
-export const LogoDark = styled(Logo)`
-  display: none;
-`;
-
 export const HeaderLink = styled(Link)``;
 
 export const HeaderUser = styled.span`

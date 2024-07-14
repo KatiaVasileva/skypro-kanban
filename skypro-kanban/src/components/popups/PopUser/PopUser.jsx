@@ -3,10 +3,20 @@ import { PopUserExitButton } from "../../../styles/Button.styled";
 import * as S from "./PopUser.styled";
 import { AppRoutes } from "../../../lib/appRoutes";
 import { useUserContext } from "../../../hooks/useUserContext";
+import { useThemeContext } from "../../../hooks/useThemeContext";
 
 // eslint-disable-next-line react/prop-types
-function PopUser({ toggleTheme }) {
+function PopUser() {
   const { user } = useUserContext();
+  const {theme, setTheme} = useThemeContext();
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   return (
     <S.PopUser>
