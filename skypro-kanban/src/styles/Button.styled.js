@@ -41,11 +41,11 @@ export const HeaderButton = styled(Button)`
 export const PopUserExitButton = styled(Button)`
   width: 72px;
   background: transparent;
-  color: #565eef;
-  border: 1px solid #565eef;
+  color: ${(props) => props.theme.button03};
+  border: 1px solid ${(props) => props.theme.button03};
 
   a {
-    color: #565eef;
+    color: ${(props) => props.theme.button03};
   }
 
   ${hover03}
@@ -65,7 +65,7 @@ export const CardButton = styled(Button)`
   align-items: center;
   justify-content: space-around;
   padding: 2px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.block};
 
   ${CardButtonDot}
 `;
@@ -82,11 +82,10 @@ export const ExitYes = styled(Link)`
 export const ExitNo = styled(Link)`
   width: 100%;
   height: 100%;
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #565eef;
+  color: ${(props) => props.theme.button03};
 `;
 
 export const PopExitYesButton = styled(Button)`
@@ -127,7 +126,7 @@ export const PopExitNoButton = styled(Button)`
   color: #ffffff;
   margin-right: 10px;
   background-color: transparent;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
+  border: 0.7px solid var(--palette-navy-60, ${(props) => props.theme.button03});
 
   ${hover03}
 
@@ -144,6 +143,16 @@ export const LoginButton = styled(Button)`
 `;
 
 export const ButtonEnterLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonEnterLinkDisabled = styled(Link)`
+  background-color: #94A6BE;
   width: 100%;
   height: 100%;
   color: #ffffff;
@@ -199,22 +208,18 @@ export const ButtonBrowse = styled.div`
   justify-content: space-between;
 `;
 
-export const ButtonBrowseHide = styled.div`
-  display: none;
-`;
-
 export const ButtonBrowseGroup = styled.div``;
 
 export const BrowseFormButtonBor = styled(Button)`
   margin-bottom: 10px;
   padding: 0 14px;
   margin-right: 8px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
+  border: 0.7px solid var(--palette-navy-60, ${(props) => props.theme.button03});
   background: transparent;
-  color: #565eef;
+  color: ${(props) => props.theme.button03};
 
   a {
-    color: #565eef;
+    color: ${(props) => props.theme.button03};
   }
 
   ${hover03}

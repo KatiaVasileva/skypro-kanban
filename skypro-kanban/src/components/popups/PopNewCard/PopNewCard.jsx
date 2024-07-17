@@ -11,19 +11,26 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../../styles/Common.styled";
+import { useThemeContext } from "../../../hooks/useThemeContext";
 
 function Theme({ isActive, topic, onClick }) {
+  const { theme } = useThemeContext();
+  const topicStyle = colors.get(topic);
+
   return (
     <>
       {isActive ? (
         <S.ActiveCategoryTheme
-          $themeColor={colors.get(topic)}
+          $themeColor={theme === "light" ? topicStyle : topicStyle + "_dark"}
           onClick={onClick}
         >
           <S.CategoryThemeName topic="topic">{topic}</S.CategoryThemeName>
         </S.ActiveCategoryTheme>
       ) : (
-        <S.CategoryTheme $themeColor={colors.get(topic)} onClick={onClick}>
+        <S.CategoryTheme
+          $themeColor={theme === "light" ? topicStyle : topicStyle + "_dark"}
+          onClick={onClick}
+        >
           <S.CategoryThemeName>{topic}</S.CategoryThemeName>
         </S.CategoryTheme>
       )}
@@ -41,7 +48,7 @@ function PopNewCard() {
     description: "",
     date: "",
   });
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [addTaskError, setAddTaskError] = useState(false);
   const [dateEnd, setDateEnd] = useState("Выберите срок исполнения.");
   const [dateControl, setDateControl] = useState("");
@@ -114,7 +121,6 @@ function PopNewCard() {
                 formData={formData}
                 setFormData={setFormData}
               />
-
             </S.Wrap>
             <S.Categories>
               <S.CategoriesSubtitle>Категория</S.CategoriesSubtitle>

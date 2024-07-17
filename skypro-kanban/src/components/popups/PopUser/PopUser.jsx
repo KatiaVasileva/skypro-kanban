@@ -3,9 +3,19 @@ import { PopUserExitButton } from "../../../styles/Button.styled";
 import * as S from "./PopUser.styled";
 import { AppRoutes } from "../../../lib/appRoutes";
 import { useUserContext } from "../../../hooks/useUserContext";
+import { useThemeContext } from "../../../hooks/useThemeContext";
 
 function PopUser() {
-  const {user} = useUserContext();
+  const { user } = useUserContext();
+  const {theme, setTheme} = useThemeContext();
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   return (
     <S.PopUser>
@@ -13,7 +23,7 @@ function PopUser() {
       <S.Mail>{user.login}</S.Mail>
       <S.Theme>
         <S.DarkThemeText>Темная тема</S.DarkThemeText>
-        <S.Checkbox type="checkbox" name="checkbox" />
+        <S.Checkbox type="checkbox" name="checkbox" onChange={toggleTheme} />
       </S.Theme>
       <PopUserExitButton>
         <Link to={AppRoutes.EXIT}>Выйти</Link>

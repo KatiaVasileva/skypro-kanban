@@ -12,7 +12,7 @@ export default function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [getTasksError, setGetTasksError] = useState(false);
   const { user } = useUserContext();
-  const {setTasks} = useTaskContext();
+  const { setTasks } = useTaskContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,8 +35,7 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-
-        <Header ></Header>
+        <Header />
 
         {isLoading ? (
           <>

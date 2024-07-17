@@ -16,7 +16,7 @@ export async function login({ login, password }) {
     );
   }
 
-  return response.json();
+  return await response.json();
 }
 
 // Зарегистрироваться
@@ -36,7 +36,7 @@ export async function register({ login, name, password }) {
     );
   }
 
-  return response.json();
+  return await response.json();
 }
 
 // Получить список задач
@@ -56,11 +56,18 @@ export async function getTasks({ token }) {
     throw new Error("Не удалось загрузить данные, попробуйте позже");
   }
 
-  return response.json();
+  return await response.json();
 }
 
 // Добавить задачу в список
-export async function addTask({ title, topic, status, description, date, token }) {
+export async function addTask({
+  title,
+  topic,
+  status,
+  description,
+  date,
+  token,
+}) {
   const response = await fetch(baseHost + "/kanban", {
     method: "POST",
     headers: {
@@ -82,5 +89,52 @@ export async function addTask({ title, topic, status, description, date, token }
     throw new Error("Нет авторизации");
   }
 
-  return response.json();
+  return await response.json();
+}
+
+// Изменить задачу
+export async function updateTask({
+  id,
+  token,
+  title,
+  topic,
+  status,
+  description,
+  date,
+}) {
+  const response = await fetch(baseHost + "/kanban/" + id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  if (response.status === 401) {
+    throw new Error("Нет авторизации");
+  }
+
+  return await response.json();
+}
+
+// Удалить задачу
+export async function removeTask({ id, token }) {
+  const response = await fetch(baseHost + "/kanban/" + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response.status === 401) {
+    throw new Error("Нет авторизации");
+  }
+
+  return await response.json();
 }

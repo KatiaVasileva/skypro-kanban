@@ -8,8 +8,8 @@ export const CalendarBlock = styled(DayPicker)`
   --rdp-cell-size: 24px;
   --rdp-caption-font-size: 14px;
   --rdp-accent-color: #94a6be;
-  --rdp-background-color: #eaeef6;
-  --rdp-selected-color: #ffffff;
+  --rdp-background-color: ${(props) => props.theme.main};
+  --rdp-selected-color: ${(props) => props.theme.activeDay};
 
   @media screen and (max-width: ${breakpoints.lg + "px"}) {
     font-size: 14px;

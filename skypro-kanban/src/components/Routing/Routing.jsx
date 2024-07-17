@@ -15,7 +15,7 @@ export default function Routing() {
       <Routes>
         <Route element={<PrivateRoute />}>
           <Route path={AppRoutes.MAIN} element={<MainPage />}>
-            <Route path={AppRoutes.NEW_CARD} element={<NewCardPage/>} />
+            <Route path={AppRoutes.NEW_CARD} element={<NewCardPage />} />
             <Route path={AppRoutes.CARD_BROWSE} element={<CardBrowsePage />} />
             <Route path={AppRoutes.EXIT} element={<ExitPage />} />
           </Route>
